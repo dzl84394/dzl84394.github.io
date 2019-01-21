@@ -159,6 +159,358 @@
 
 
   
+    <article id="post-start-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/start-to-jekyll/" class="article-date">
+  <time datetime="2019-01-20T08:59:41.603Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/start-to-jekyll/">学习Jekyll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装ruby"><a href="#安装ruby" class="headerlink" title="安装ruby"></a>安装ruby</h2><p>不知道为啥我mac自带的ruby安装jekyll总是无法成功，所以只能另外自己重新安装一个<br>先安装rvm：</p>
+<ul>
+<li>下载&amp;安装<br>curl -sSL <a href="https://get.rvm.io" target="_blank" rel="noopener">https://get.rvm.io</a> | bash -s stable </li>
+<li>环境变量<br>source /Users/zlding/.rvm/scripts/rvm  </li>
+<li>查看版本<br>rvm -v</li>
+<li>更新rvm<br>rvm get stable</li>
+<li><p>版本查看<br>rvm list known</p>
+</li>
+<li><p>安装一个版本<br>rvm install 2.5.3<br>rvm use 2.5.3 –default</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v # 查看ruby 版本</span><br><span class="line">$ rvm list known # 列出已知的 ruby 版本</span><br><span class="line">$ rvm install 2.3.0 # 选择指定 ruby 版本进行更新</span><br><span class="line">$ rvm get stable # 更新 rvm</span><br><span class="line">$ rvm use 2.2.2 # 切换到指定 ruby 版本</span><br><span class="line">$ rvm use 2.2.2 --default # 设置指定 ruby 版本为默认版本</span><br><span class="line">$ rvm list # 查询已安装的 ruby 版本</span><br><span class="line">$ rvm remove 1.9.2 # 卸载移除 指定 ruby 版本</span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable # 安装 rvm 环境</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby # 默认安装 rvm 最新版本</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 # 安装 rvm 指定版本</span><br><span class="line">$ source ~/.rvm/scripts/rvm # 载入 rvm</span><br></pre></td></tr></table></figure>
+<h2 id="安装Xcode"><a href="#安装Xcode" class="headerlink" title="安装Xcode"></a>安装Xcode</h2><p>要Xcode/Command Line Tools<br>如果下载不了<br><a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a><br>去下载，自己安装</p>
+<h2 id="安装jekyll"><a href="#安装jekyll" class="headerlink" title="安装jekyll"></a>安装jekyll</h2><p>rvm装好了，选一个ruby，gem也好了</p>
+<p>gem -v<br>gem update –system</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看源列表</span><br><span class="line">gem sources -l</span><br><span class="line"># 将源移除</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line"># 添加国内源</span><br><span class="line">gem sources --add https://gems.ruby-china.org/</span><br><span class="line"># 缓存</span><br><span class="line">gem sources -u</span><br></pre></td></tr></table></figure>
+<p>gem install jekyll<br>jekyll -v<br>gem install bundler<br>gem install jekyll-paginate<br>gem install jekyll-gist</p>
+<h2 id="github创建一个项目"><a href="#github创建一个项目" class="headerlink" title="github创建一个项目"></a>github创建一个项目</h2><p>github建立一个和用户一摸一样的项目<br>dzl84394.github.io<br>username必须一样<br>后面的.github.io会默认这是一个博客</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">jekyll new dzl84394.github.io</span><br><span class="line">创建一个项目dzl84394.github.io</span><br><span class="line">cd dzl84394.github.io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">在_post文件夹添加mk文件</span><br><span class="line">bundle</span><br><span class="line">jekyll build</span><br><span class="line">jekyll server</span><br><span class="line"></span><br><span class="line">_site 文件夹上传到dzl84394.github.io.git，这边是网站静态文件。</span><br><span class="line">网上一直忽略这一点，直接把源文件上传上去，这很坑的</span><br></pre></td></tr></table></figure>
+<p>git init<br>git add *<br>git commit -m “first commit”<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:dzl84394/dzl84394.github.io.git<br>git push -u origin master</p>
+<p><code>`</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/start-to-jekyll/" data-id="cjr6g24pe0001dqln87sylmut" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bigData_cassandra" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/bigData_cassandra/" class="article-date">
+  <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/bigData_cassandra/">cassandra 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/bigData_cassandra/" data-id="cjr6g1ib20000djln2f8e0sc9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bigData_elasticsearch" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/bigData_elasticsearch/" class="article-date">
+  <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/bigData_elasticsearch/">elasticsearch 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjr6g1ib80001djlny3mnp9m9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bigData_hbase" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/bigData_hbase/" class="article-date">
+  <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/bigData_hbase/">hbase 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjr6g1iba0002djlnzh7z5iv1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bigData_kafka" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/bigData_kafka/" class="article-date">
+  <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/bigData_kafka/">kafka 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/bigData_kafka/" data-id="cjr6g1ibb0003djlns8a546y0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-base" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/java-base/" class="article-date">
+  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/java-base/">HashMap和Hashtable的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HashMap和Hashtable的区别"><a href="#HashMap和Hashtable的区别" class="headerlink" title="HashMap和Hashtable的区别"></a>HashMap和Hashtable的区别</h1><p>HashMap和Hashtable的比较是Java面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。</p>
+<ul>
+<li>线程安全性<br>HashMap和Hashtable都实现了Map接口，主要的区别有：线程安全性，同步(synchronization)，以及速度。<br>Java 5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。</li>
+</ul>
+<hr>
+<ul>
+<li>null<br>HashMap可以接受为null的键值(key)和值(value)，而Hashtable则不行。</li>
+</ul>
+<hr>
+<ul>
+<li>Iterator<br>HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。<br>JDK8之前的版本中，Hashtable是没有fast-fail机制的。在JDK8及以后的版本中 ，HashTable也是使用fast-fail的</li>
+</ul>
+<hr>
+<ul>
+<li>能否让HashMap同步？<br>HashMap可以通过下面的语句进行同步：<br>Map m = Collections.synchronizeMap(hashMap);</li>
+</ul>
+<hr>
+<ul>
+<li>作者<br>作者多了并发大神Doug Lea，他写了util.concurrent包</li>
+</ul>
+<hr>
+<ul>
+<li>出现时间<br>Hashtable是java一开始发布时就提供的键值映射的数据结构<br>而HashMap产生于JDK1.2<br>Hashtable没有遵循驼峰命名法吧（也可能是这个原因弃用，囧）</li>
+</ul>
+<hr>
+<ul>
+<li>对外提供的接口不同<br>Hashtable比HashMap多提供了elments() 和contains() 两个方法<br>elments() 方法继承自Hashtable的父类Dictionnary。elements() 方法用于返回此Hashtable中的value的枚举。<br>contains()方法判断该Hashtable是否包含传入的value。它的作用与containsValue()一致。事实上，contansValue() 就只是调用了一下contains() 方法。  </li>
+</ul>
+<hr>
+<ul>
+<li>初始容量大小和每次扩充容量大小的不同<br>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。<br>Hashtable的侧重点是哈希的结果更加均匀，使得哈希冲突减少。当哈希表的大小为素数时，简单的取模哈希的结果会更加均匀。</li>
+</ul>
+<hr>
+<ul>
+<li>计算hash值的方法不同<br>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。<br>  HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。<br>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算<br>  为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjr6g1ibc0004djln4hg1efra" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-base2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/java-base2/" class="article-date">
+  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/java-base2/">java8 lambda 遍历集合</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjr6g1ibe0005djlnemqgr91f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-maven" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/13/java-maven/" class="article-date">
+  <time datetime="2019-01-13T06:36:54.034Z" itemprop="datePublished">2019-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/java-maven/">maven （一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h2><ul>
+<li>dependencyManagement<br>dependencyManagement的作用其实相当于一个对所依赖jar包进行版本管理的管理器。只是声明依赖，并不实现引入。</li>
+</ul>
+<p>如果dependencies里的dependency自己没有声明version元素，那么maven就</p>
+<p>会倒dependencyManagement里面去找有没有对该artifactId和groupId进行过版本声明，如果有，就继承它，</p>
+<p>如果没有就会报错，告诉你必须为dependency声明一个version</p>
+<p>如果dependencies中的dependency声明了version，那么无论dependencyManagement中有无对该jar的version声明，都以dependency里的version为准。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/13/java-maven/" data-id="cjr6g1ibf0006djlnd49hgikx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
 </section>
@@ -216,6 +568,18 @@
         
           <li>
             <a href="/2019/01/21/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/start-to-jekyll/">学习Jekyll</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/bigData_cassandra/">cassandra 入门</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/bigData_elasticsearch/">elasticsearch 入门</a>
           </li>
         
       </ul>
