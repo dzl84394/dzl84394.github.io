@@ -5,20 +5,20 @@
   
 
   
-  <title>Welcome to Jekyll! | dails blog</title>
+  <title>maven （一） | dails blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyl">
-<meta name="keywords" content="Jekyll">
+  <meta name="description" content="maven dependencyManagementdependencyManagement的作用其实相当于一个对所依赖jar包进行版本管理的管理器。只是声明依赖，并不实现引入。  如果dependencies里的dependency自己没有声明version元素，那么maven就 会倒dependencyManagement里面去找有没有对该artifactId和groupId进行过版本声明，如">
+<meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Welcome to Jekyll!">
-<meta property="og:url" content="http://yoursite.com/2019/01/13/welcome-to-jekyll/index.html">
+<meta property="og:title" content="maven （一）">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/java-maven/index.html">
 <meta property="og:site_name" content="dails blog">
-<meta property="og:description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyl">
+<meta property="og:description" content="maven dependencyManagementdependencyManagement的作用其实相当于一个对所依赖jar包进行版本管理的管理器。只是声明依赖，并不实现引入。  如果dependencies里的dependency自己没有声明version元素，那么maven就 会倒dependencyManagement里面去找有没有对该artifactId和groupId进行过版本声明，如">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-28T01:54:27.458Z">
+<meta property="og:updated_time" content="2019-01-28T02:11:27.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome to Jekyll!">
-<meta name="twitter:description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyl">
+<meta name="twitter:title" content="maven （一）">
+<meta name="twitter:description" content="maven dependencyManagementdependencyManagement的作用其实相当于一个对所依赖jar包进行版本管理的管理器。只是声明依赖，并不实现引入。  如果dependencies里的dependency自己没有声明version元素，那么maven就 会倒dependencyManagement里面去找有没有对该artifactId和groupId进行过版本声明，如">
   
     <link rel="alternate" href="/atom.xml" title="dails blog" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-welcome-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-java-maven" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/13/welcome-to-jekyll/" class="article-date">
-  <time datetime="2019-01-13T06:36:54.034Z" itemprop="datePublished">2019-01-13</time>
+    <a href="/2019/01/22/java-maven/" class="article-date">
+  <time datetime="2019-01-22T09:27:12.000Z" itemprop="datePublished">2019-01-22</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Welcome to Jekyll!
+      maven （一）
     </h1>
   
 
@@ -87,17 +87,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
-<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-<p>Jekyll also offers powerful support for code snippets:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% highlight ruby %&#125;</span><br><span class="line">def print_hi(name)</span><br><span class="line">  puts &quot;Hi, #&#123;name&#125;&quot;</span><br><span class="line">end</span><br><span class="line">print_hi(&apos;Tom&apos;)</span><br><span class="line">#=&gt; prints &apos;Hi, Tom&apos; to STDOUT.</span><br><span class="line">&#123;% endhighlight %&#125;</span><br><span class="line"></span><br><span class="line">Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].</span><br><span class="line"></span><br><span class="line">[jekyll-docs]: https://jekyllrb.com/docs/home</span><br><span class="line">[jekyll-gh]:   https://github.com/jekyll/jekyll</span><br><span class="line">[jekyll-talk]: https://talk.jekyllrb.com/</span><br></pre></td></tr></table></figure></p>
+        <h2 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h2><ul>
+<li>dependencyManagement<br>dependencyManagement的作用其实相当于一个对所依赖jar包进行版本管理的管理器。只是声明依赖，并不实现引入。</li>
+</ul>
+<p>如果dependencies里的dependency自己没有声明version元素，那么maven就</p>
+<p>会倒dependencyManagement里面去找有没有对该artifactId和groupId进行过版本声明，如果有，就继承它，</p>
+<p>如果没有就会报错，告诉你必须为dependency声明一个version</p>
+<p>如果dependencies中的dependency声明了version，那么无论dependencyManagement中有无对该jar的version声明，都以dependency里的version为准。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/13/welcome-to-jekyll/" data-id="cjrfp31sx000l8zlnh3xd1g8j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/java-maven/" data-id="cjrfp31ss000d8zlnec79te8n" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
 
     </footer>
   </div>
@@ -105,15 +109,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/13/java-maven/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/01/23/java-base3/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          maven （一）
+          项目加载数据
         
       </div>
     </a>
   
+  
+    <a href="/2019/01/21/bigData_cassandra/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cassandra 入门</div>
+    </a>
   
 </nav>
 
@@ -167,10 +176,6 @@
           </li>
         
           <li>
-            <a href="/2019/01/28/bigData_cassandra/">cassandra 入门</a>
-          </li>
-        
-          <li>
             <a href="/2019/01/28/mac/">mac日常操作</a>
           </li>
         
@@ -179,7 +184,11 @@
           </li>
         
           <li>
-            <a href="/2019/01/21/学习-hexo/">学习 hexo</a>
+            <a href="/2019/01/22/java-maven/">maven （一）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/21/bigData_cassandra/">cassandra 入门</a>
           </li>
         
       </ul>
