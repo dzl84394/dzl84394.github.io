@@ -62,6 +62,80 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java-base" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/java-base/" class="article-date">
+  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/java-base/">HashMap和Hashtable的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HashMap和Hashtable的区别"><a href="#HashMap和Hashtable的区别" class="headerlink" title="HashMap和Hashtable的区别"></a>HashMap和Hashtable的区别</h1><p>HashMap和Hashtable的比较是Java面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。</p>
+<ul>
+<li>线程安全性<br>HashMap和Hashtable都实现了Map接口，主要的区别有：线程安全性，同步(synchronization)，以及速度。<br>Java 5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。</li>
+</ul>
+<hr>
+<ul>
+<li>null<br>HashMap可以接受为null的键值(key)和值(value)，而Hashtable则不行。</li>
+</ul>
+<hr>
+<ul>
+<li>Iterator<br>HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。<br>JDK8之前的版本中，Hashtable是没有fast-fail机制的。在JDK8及以后的版本中 ，HashTable也是使用fast-fail的</li>
+</ul>
+<hr>
+<ul>
+<li>能否让HashMap同步？<br>HashMap可以通过下面的语句进行同步：<br>Map m = Collections.synchronizeMap(hashMap);</li>
+</ul>
+<hr>
+<ul>
+<li>作者<br>作者多了并发大神Doug Lea，他写了util.concurrent包</li>
+</ul>
+<hr>
+<ul>
+<li>出现时间<br>Hashtable是java一开始发布时就提供的键值映射的数据结构<br>而HashMap产生于JDK1.2<br>Hashtable没有遵循驼峰命名法吧（也可能是这个原因弃用，囧）</li>
+</ul>
+<hr>
+<ul>
+<li>对外提供的接口不同<br>Hashtable比HashMap多提供了elments() 和contains() 两个方法<br>elments() 方法继承自Hashtable的父类Dictionnary。elements() 方法用于返回此Hashtable中的value的枚举。<br>contains()方法判断该Hashtable是否包含传入的value。它的作用与containsValue()一致。事实上，contansValue() 就只是调用了一下contains() 方法。  </li>
+</ul>
+<hr>
+<ul>
+<li>初始容量大小和每次扩充容量大小的不同<br>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。<br>Hashtable的侧重点是哈希的结果更加均匀，使得哈希冲突减少。当哈希表的大小为素数时，简单的取模哈希的结果会更加均匀。</li>
+</ul>
+<hr>
+<ul>
+<li>计算hash值的方法不同<br>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。<br>  HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。<br>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算<br>  为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjrfp31sp00088zlntibuexp1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java-base2" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/20/java-base2/" class="article-date">
@@ -88,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjrfodpz60009splndsfu4vtc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjrfp31sq00098zln95xm41x0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -133,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/13/java-maven/" data-id="cjrfodpz6000asplndxxl0o4k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/13/java-maven/" data-id="cjrfp31ss000d8zlnec79te8n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -174,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/13/welcome-to-jekyll/" data-id="cjrfodpz8000esplnjhgo7c9v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/13/welcome-to-jekyll/" data-id="cjrfp31sx000l8zlnh3xd1g8j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
@@ -204,7 +278,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac日常/">mac日常</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac日常/">mac日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li></ul>
     </div>
   </div>
 
@@ -214,7 +288,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mac日常/" style="font-size: 10px;">mac日常</a>
+      <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mac日常/" style="font-size: 10px;">mac日常</a> <a href="/tags/spring-cloud/" style="font-size: 10px;">spring cloud</a>
     </div>
   </div>
 
@@ -236,6 +310,10 @@
       <ul>
         
           <li>
+            <a href="/2019/01/28/spring-cloud-1-eureka-server/">spring cloud (1) eureka server</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/28/bigData_cassandra/">cassandra 入门</a>
           </li>
         
@@ -249,10 +327,6 @@
         
           <li>
             <a href="/2019/01/21/学习-hexo/">学习 hexo</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/21/hello-world/">Hello hexo</a>
           </li>
         
       </ul>
