@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="dails blog">
 <meta property="og:description" content="安装ruby不知道为啥我mac自带的ruby安装jekyll总是无法成功，所以只能另外自己重新安装一个先安装rvm：  下载&amp;amp;安装curl -sSL https://get.rvm.io | bash -s stable  环境变量source /Users/zlding/.rvm/scripts/rvm   查看版本rvm -v 更新rvmrvm get stable 版本查看rvm l">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-28T02:11:43.211Z">
+<meta property="og:updated_time" content="2019-01-29T02:13:41.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习Jekyll">
 <meta name="twitter:description" content="安装ruby不知道为啥我mac自带的ruby安装jekyll总是无法成功，所以只能另外自己重新安装一个先安装rvm：  下载&amp;amp;安装curl -sSL https://get.rvm.io | bash -s stable  环境变量source /Users/zlding/.rvm/scripts/rvm   查看版本rvm -v 更新rvmrvm get stable 版本查看rvm l">
@@ -103,12 +103,12 @@
 <h2 id="安装jekyll"><a href="#安装jekyll" class="headerlink" title="安装jekyll"></a>安装jekyll</h2><p>rvm装好了，选一个ruby，gem也好了</p>
 <p>gem -v<br>gem update –system</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看源列表</span><br><span class="line">gem sources -l</span><br><span class="line"># 将源移除</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line"># 添加国内源</span><br><span class="line">gem sources --add https://gems.ruby-china.org/</span><br><span class="line"># 缓存</span><br><span class="line">gem sources -u</span><br></pre></td></tr></table></figure>
-<p>gem install jekyll<br>jekyll -v<br>gem install bundler<br>gem install jekyll-paginate<br>gem install jekyll-gist</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gem install jekyll</span><br><span class="line">jekyll -v</span><br><span class="line">gem install bundler</span><br><span class="line">gem install jekyll-paginate</span><br><span class="line">gem install jekyll-gist</span><br></pre></td></tr></table></figure>
 <h2 id="github创建一个项目"><a href="#github创建一个项目" class="headerlink" title="github创建一个项目"></a>github创建一个项目</h2><p>github建立一个和用户一摸一样的项目<br>dzl84394.github.io<br>username必须一样<br>后面的.github.io会默认这是一个博客</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">jekyll new dzl84394.github.io</span><br><span class="line">创建一个项目dzl84394.github.io</span><br><span class="line">cd dzl84394.github.io</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">在_post文件夹添加mk文件</span><br><span class="line">bundle</span><br><span class="line">jekyll build</span><br><span class="line">jekyll server</span><br><span class="line"></span><br><span class="line">_site 文件夹上传到dzl84394.github.io.git，这边是网站静态文件。</span><br><span class="line">网上一直忽略这一点，直接把源文件上传上去，这很坑的</span><br></pre></td></tr></table></figure>
-<p>git init<br>git add *<br>git commit -m “first commit”<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:dzl84394/dzl84394.github.io.git<br>git push -u origin master</p>
-<p><code>`</code></p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jekyll new dzl84394.github.io</span><br><span class="line">创建一个项目dzl84394.github.io</span><br><span class="line">cd dzl84394.github.io</span><br></pre></td></tr></table></figure>
+<p>在_post文件夹添加mk文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bundle</span><br><span class="line">jekyll build</span><br><span class="line">jekyll server</span><br></pre></td></tr></table></figure></p>
+<p>_site 文件夹上传到dzl84394.github.io.git，这边是网站静态文件。<br>网上一直忽略这一点，直接把源文件上传上去，这很坑的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add *</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin git@github.com:dzl84394/dzl84394.github.io.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -161,7 +161,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac日常/">mac日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac日常/">mac日常</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/md/">md</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a></li></ul>
     </div>
   </div>
 
@@ -171,7 +171,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mac日常/" style="font-size: 10px;">mac日常</a> <a href="/tags/spring-cloud/" style="font-size: 15px;">spring cloud</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mac日常/" style="font-size: 10px;">mac日常</a> <a href="/tags/md/" style="font-size: 10px;">md</a> <a href="/tags/spring-cloud/" style="font-size: 15px;">spring cloud</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
     </div>
   </div>
 
@@ -193,6 +193,10 @@
       <ul>
         
           <li>
+            <a href="/2019/01/29/Eclipse-PlantUML/">Eclipse PlantUML</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/28/spring-cloud-2-eureka-client/">spring cloud（2） eureka client</a>
           </li>
         
@@ -206,10 +210,6 @@
         
           <li>
             <a href="/2019/01/23/java-base3/">项目启动前加载数据CommandLineRunner&amp;PostConstruct</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/22/java-maven/">maven （一）</a>
           </li>
         
       </ul>
