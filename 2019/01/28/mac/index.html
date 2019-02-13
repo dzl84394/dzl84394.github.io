@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="dails blog">
 <meta property="og:description" content="多开sts或eclipse1open -n /Applications/STS.app/ 安装Navicat Premium for Mac网上的教程：https://www.jianshu.com/p/f3ef78deadaa 有2个坑1，就是rpk文件，最新版已经没有了，这个路子走不通了，得下个12.0.22之前的2，教程里面的rsa的 http://tool.chacuo.net/crypt">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-13T05:27:58.156Z">
+<meta property="og:updated_time" content="2019-02-13T08:57:27.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac日常操作">
 <meta name="twitter:description" content="多开sts或eclipse1open -n /Applications/STS.app/ 安装Navicat Premium for Mac网上的教程：https://www.jianshu.com/p/f3ef78deadaa 有2个坑1，就是rpk文件，最新版已经没有了，这个路子走不通了，得下个12.0.22之前的2，教程里面的rsa的 http://tool.chacuo.net/crypt">
@@ -100,6 +100,9 @@
 </ul>
 <h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>要让打开终端时也读取~/.bashrc，就在~/.bash_profile当中加入这一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[ -s ~/.bashrc ]] &amp;&amp; source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
 <p>这一行的意思是当.bashrc不为空时source它</p>
+<h2 id="Mac-Eclipse安装lombok"><a href="#Mac-Eclipse安装lombok" class="headerlink" title="Mac Eclipse安装lombok"></a>Mac Eclipse安装lombok</h2><p>windows只要maven加一个包就好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是mac上是不行的（部门较多人用mac，lomnok有点坑啊）<br>~/.m2/repository/org/projectlombok/version/ 下<br>复制一个lombok-1.18.2.jar<br>复制到<br>/Applications/STS.app/Contents/Eclipse/ 下，改个名字，就直接lombok.jar 好了</p>
+<p>然后eclipse.ini（STS.ini）尾巴上加一个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-javaagent:../Eclipse/lombok.jar</span><br><span class="line">-vmargs -javaagent:lombok.jar</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
