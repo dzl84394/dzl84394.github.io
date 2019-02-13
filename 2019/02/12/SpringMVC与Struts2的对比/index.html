@@ -5,20 +5,16 @@
   
 
   
-  <title>HashMap和Hashtable的区别 | dails blog</title>
+  <title>SpringMVC与Struts2的对比 | dails blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HashMap和Hashtable的区别HashMap和Hashtable的比较是Java面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。  线程安全性HashMap和Hashtable都实现了Map接口，主要的区别有：线程安全性，同步(synchronization)，以及速度。Java 5提供了ConcurrentHashMap，它是HashTa">
-<meta name="keywords" content="Java基础">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HashMap和Hashtable的区别">
-<meta property="og:url" content="http://yoursite.com/2019/01/20/java-base/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC与Struts2的对比">
+<meta property="og:url" content="http://yoursite.com/2019/02/12/SpringMVC与Struts2的对比/index.html">
 <meta property="og:site_name" content="dails blog">
-<meta property="og:description" content="HashMap和Hashtable的区别HashMap和Hashtable的比较是Java面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。  线程安全性HashMap和Hashtable都实现了Map接口，主要的区别有：线程安全性，同步(synchronization)，以及速度。Java 5提供了ConcurrentHashMap，它是HashTa">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-28T01:53:45.217Z">
+<meta property="og:updated_time" content="2019-02-12T08:05:01.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HashMap和Hashtable的区别">
-<meta name="twitter:description" content="HashMap和Hashtable的区别HashMap和Hashtable的比较是Java面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。  线程安全性HashMap和Hashtable都实现了Map接口，主要的区别有：线程安全性，同步(synchronization)，以及速度。Java 5提供了ConcurrentHashMap，它是HashTa">
+<meta name="twitter:title" content="SpringMVC与Struts2的对比">
   
     <link rel="alternate" href="/atom.xml" title="dails blog" type="application/atom+xml">
   
@@ -65,10 +61,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-java-base" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-SpringMVC与Struts2的对比" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/20/java-base/" class="article-date">
-  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+    <a href="/2019/02/12/SpringMVC与Struts2的对比/" class="article-date">
+  <time datetime="2019-02-12T08:05:01.000Z" itemprop="datePublished">2019-02-12</time>
 </a>
     
   </div>
@@ -79,7 +75,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      HashMap和Hashtable的区别
+      SpringMVC与Struts2的对比
     </h1>
   
 
@@ -87,70 +83,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="HashMap和Hashtable的区别"><a href="#HashMap和Hashtable的区别" class="headerlink" title="HashMap和Hashtable的区别"></a>HashMap和Hashtable的区别</h1><p>HashMap和Hashtable的比较是Java面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。</p>
-<ul>
-<li>线程安全性<br>HashMap和Hashtable都实现了Map接口，主要的区别有：线程安全性，同步(synchronization)，以及速度。<br>Java 5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。</li>
-</ul>
-<hr>
-<ul>
-<li>null<br>HashMap可以接受为null的键值(key)和值(value)，而Hashtable则不行。</li>
-</ul>
-<hr>
-<ul>
-<li>Iterator<br>HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。所以当有其它线程改变了HashMap的结构（增加或者移除元素），将会抛出ConcurrentModificationException，但迭代器本身的remove()方法移除元素则不会抛出ConcurrentModificationException异常。但这并不是一个一定发生的行为，要看JVM。这条同样也是Enumeration和Iterator的区别。<br>JDK8之前的版本中，Hashtable是没有fast-fail机制的。在JDK8及以后的版本中 ，HashTable也是使用fast-fail的</li>
-</ul>
-<hr>
-<ul>
-<li>能否让HashMap同步？<br>HashMap可以通过下面的语句进行同步：<br>Map m = Collections.synchronizeMap(hashMap);</li>
-</ul>
-<hr>
-<ul>
-<li>作者<br>作者多了并发大神Doug Lea，他写了util.concurrent包</li>
-</ul>
-<hr>
-<ul>
-<li>出现时间<br>Hashtable是java一开始发布时就提供的键值映射的数据结构<br>而HashMap产生于JDK1.2<br>Hashtable没有遵循驼峰命名法吧（也可能是这个原因弃用，囧）</li>
-</ul>
-<hr>
-<ul>
-<li>对外提供的接口不同<br>Hashtable比HashMap多提供了elments() 和contains() 两个方法<br>elments() 方法继承自Hashtable的父类Dictionnary。elements() 方法用于返回此Hashtable中的value的枚举。<br>contains()方法判断该Hashtable是否包含传入的value。它的作用与containsValue()一致。事实上，contansValue() 就只是调用了一下contains() 方法。  </li>
-</ul>
-<hr>
-<ul>
-<li>初始容量大小和每次扩充容量大小的不同<br>Hashtable默认的初始大小为11，之后每次扩充，容量变为原来的2n+1。HashMap默认的初始化大小为16。之后每次扩充，容量变为原来的2倍。<br>Hashtable的侧重点是哈希的结果更加均匀，使得哈希冲突减少。当哈希表的大小为素数时，简单的取模哈希的结果会更加均匀。</li>
-</ul>
-<hr>
-<ul>
-<li>计算hash值的方法不同<br>Hashtable直接使用对象的hashCode。hashCode是JDK根据对象的地址或者字符串或者数字算出来的int类型的数值。然后再使用除留余数发来获得最终的位置。<br>  HashMap为了提高计算效率，将哈希表的大小固定为了2的幂，这样在取模预算时，不需要做除法，只需要做位运算。位运算比除法的效率要高很多。<br>HashMap的效率虽然提高了，但是hash冲突却也增加了。因为它得出的hash值的低位相同的概率比较高，而计算位运算<br>  为了解决这个问题，HashMap重新根据hashcode计算hash值后，又对hash值做了一些运算来打散数据。使得取得的位置更加分散，从而减少了hash冲突。当然了，为了高效，HashMap只做了一些简单的位处理。从而不至于把使用2 的幂次方带来的效率提升给抵消掉。</li>
-</ul>
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjs2r72vr000e5qlntrz0h4yc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/SpringMVC与Struts2的对比/" data-id="cjs2r72vd00005qlnlkndwius" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2019/01/20/java-base2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/12/幂等性/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          java8 lambda 遍历集合
+          幂等性
         
       </div>
     </a>
   
   
-    <a href="/2019/01/11/学习-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/02/12/抽象类和接口区别/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">学习 hexo</div>
+      <div class="article-nav-title">抽象类和接口区别</div>
     </a>
   
 </nav>
