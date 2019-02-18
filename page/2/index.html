@@ -62,6 +62,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java-maven" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/java-maven/" class="article-date">
+  <time datetime="2019-01-22T09:27:12.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/java-maven/">maven （一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h2><ul>
+<li>dependencyManagement<br>dependencyManagement的作用其实相当于一个对所依赖jar包进行版本管理的管理器。只是声明依赖，并不实现引入。</li>
+</ul>
+<p>如果dependencies里的dependency自己没有声明version元素，那么maven就</p>
+<p>会倒dependencyManagement里面去找有没有对该artifactId和groupId进行过版本声明，如果有，就继承它，</p>
+<p>如果没有就会报错，告诉你必须为dependency声明一个version</p>
+<p>如果dependencies中的dependency声明了version，那么无论dependencyManagement中有无对该jar的version声明，都以dependency里的version为准。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/java-maven/" data-id="cjs9pr2tv000cmtlnmgb0a6ts" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-bigData_cassandra" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/21/bigData_cassandra/" class="article-date">
@@ -84,11 +129,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>下载<br>教程是 2.1.18，官网已经没有了，只有  2.1.20<br><a href="https://mirrors.cnnic.cn/apache/cassandra/2.1.20/apache-cassandra-2.1.20-bin.tar.gz" target="_blank" rel="noopener">https://mirrors.cnnic.cn/apache/cassandra/2.1.20/apache-cassandra-2.1.20-bin.tar.gz</a></li>
+</ul>
+<p>tar zxvf apache-cassandra-2.1.20-bin.tar.gz </p>
+<p>mv apache-cassandra-2.1.20 cassandra</p>
+<p>考到/home/bbtang/work/cassandra  来</p>
+<p>mkdir cas<br>下面放3个目录<br>mkdir data<br>mkdir commitlog<br>mkdir saved_caches  </p>
+<p> cluster_name: ‘xxx’  //集群名称。同一个集群要使用同一名称<br>    data_file_directories:  </p>
+<pre><code>    - /home/bbtang/work/cas/data   //数据文件存放路径。这里要与前面新建的文件夹对应。
+commitlog_directory: /home/bbtang/work/cas/commitlog //操作日志文件存放路径。与前面新建的文件夹对应。
+saved_caches_directory: /home/bbtang/work/cas/saved_caches  //缓存文件存放路径。与前面新建的文件夹对应。
+- seeds: &quot;192.168.x.x&quot;  //集群种子节点ip,新加入集群的节点从种子节点中同步数据。可配置多个，中间用逗号隔开。
+listen_address: 127.0.0.1  //需要监听的IP或主机名。改成本机IP
+rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成IP或0.0.0.0。若设置0.0.0.0，则要放开broadcast_rpc_address: 1.2.3.4的注释。
+</code></pre><p>cassandra-env.sh<br>…………………<br> MAX_HEAP_SIZE=”4G”<br> HEAP_NEWSIZE=”400M”</p>
+<ul>
+<li>启动(进入bin目录):<br>./bin/cassandra</li>
+</ul>
+<h2 id="crud"><a href="#crud" class="headerlink" title="crud"></a>crud</h2><p>登陆shell<br>./cqlsh 172.16.101.54 9042</p>
+<p>cassandra-cli –host 172.16.101.54 –port 9160</p>
+<ul>
+<li>sql<br>CREATE KEYSPACE yiibai_ks WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</li>
+</ul>
+<p>USE yiibai_ks;</p>
+<p>CREATE TABLE student(<br>   student_id int PRIMARY KEY,<br>   student_name text,<br>   student_city text,<br>   student_fees varint,<br>   student_phone varint<br>);</p>
+<p>CREATE KEYSPACE tutorialspoint<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
+<p>USE tutorialspoint;<br>CREATE TABLE emp(<br>   emp_id int PRIMARY KEY,<br>   emp_name text,<br>   emp_city text,<br>   emp_sal varint,<br>   emp_phone varint<br>   );</p>
+<p>   INSERT INTO emp (emp_id, emp_name, emp_city,<br>   emp_phone, emp_sal) VALUES(1,’ram’, ‘Hyderabad’, 9848022338, 50000);</p>
+<p>CREATE TABLE testList2(<br>   id text PRIMARY KEY,<br>   k0 int,<br>   );<br>   INSERT INTO user (id, name) VALUES(1,’ram’);<br>   INSERT INTO testList2 (id) VALUES(“1112”);</p>
+<p>ALTER table testList2 DROP k9999;</p>
+<p>ALTER TABLE testList2 ADD k9999 int;</p>
+<p>curl <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a></p>
+<p> select count(1) from testList2 where k0=1 ;</p>
+<p>create INDEX on testList2(k0);</p>
+<p>设置超时时间，2分钟<br>./cqlsh –request-timeout 120 127.0.0.1  </p>
+<p>CREATE KEYSPACE miguvideo_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE miguvideo_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
+<p>CREATE KEYSPACE common_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE common_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
+<p>CREATE KEYSPACE common_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE common_userid(<br>   common_carrierJiangsuProvince text PRIMARY KEY,<br>   userId text,<br>   );</p>
+<h2 id="java的crud"><a href="#java的crud" class="headerlink" title="java的crud"></a>java的crud</h2><h2 id="批量执行"><a href="#批量执行" class="headerlink" title="批量执行"></a>批量执行</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjs2r72vh00015qln2079hekw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjs9pr2tp0003mtlnl9l2ernl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -100,9 +183,9 @@
 
 
   
-    <article id="post-bigData_kafka" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-kafka-windows" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/20/bigData_kafka/" class="article-date">
+    <a href="/2019/01/20/kafka-windows/" class="article-date">
   <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
 </a>
     
@@ -114,7 +197,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/20/bigData_kafka/">kafka 入门</a>
+      <a class="article-title" href="/2019/01/20/kafka-windows/">kafka window 入门</a>
     </h1>
   
 
@@ -122,11 +205,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="kafka-windows环境"><a href="#kafka-windows环境" class="headerlink" title="kafka windows环境"></a>kafka windows环境</h1><p><a href="https://blog.csdn.net/u010054969/article/details/70241478" target="_blank" rel="noopener">https://blog.csdn.net/u010054969/article/details/70241478</a></p>
+<ul>
+<li><p>下载<br><a href="http://kafka.apache.org/downloads.html" target="_blank" rel="noopener">http://kafka.apache.org/downloads.html</a><br>不要下源码，下tar包的</p>
+</li>
+<li><p>解压之后<br>里面有zk，有kafka，不知道为啥外面的zk起会报错，自带完全没问题</p>
+</li>
+<li><p>报错：找不好主类的错误<br>bin\windows\kafka-run-class.bat的179行<br>“%CLASSPATH%” 打上双引号</p>
+</li>
+<li><p>修改配置<br>打开D:\kafka_2.11-0.10.2.0\config\zookeeper.properties<br>dataDir=D:\logs\zookeeper<br>打开D:\kafka_2.11-0.10.2.0\config\server.properties<br>log.dirs=D:\logs\kafka </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">启动zk</span><br><span class="line">.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties</span><br><span class="line">启动kafka</span><br><span class="line">.\bin\windows\kafka-server-start.bat .\config\server.properties</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 检查list</span><br><span class="line"> ./kafka-topics.sh --list --zookeeper  localhost:2181</span><br><span class="line"> kafka-topics.bat --list --zookeeper  localhost:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.148.53:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.149.41:2181</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"> 添加topic （最后的test改成topic）</span><br><span class="line">kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line">./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic filter_session_start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic logstash-contract</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">进入生产者 （最后的test改成topic）</span><br><span class="line">.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> ./kafka-console-producer.sh --broker-list 10.200.86.126:9092 --topic filter_session_start</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list 10.125.148.53:9200 --topic logstash-authorization</span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic logstash-contract</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">可以随便敲键盘，查看监听是否收到</span><br><span class="line"></span><br><span class="line">进入消费者 （最后的test改成topic）</span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat --zookeeper localhost:2181 --topic test </span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat  --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-authorization --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.149.41:2181 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-contract --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">检查group</span><br><span class="line">./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group filter_session_start</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_kafka/" data-id="cjs2r72vm00045qlnhc3m4lan" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/kafka-windows/" data-id="cjs9pr2th0000mtlnfgky2gih" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
@@ -164,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjs2r72vn00055qlnupyelskj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjs9pr2tr0005mtlntqsvz08z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -202,48 +297,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjs2r72vp00095qlnxd41l2vj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjs9pr2ts0007mtln1zso29c3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-java-base2" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/20/java-base2/" class="article-date">
-  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/20/java-base2/">java8 lambda 遍历集合</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjs2r72vq000b5qlnf2ilcsic" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
 
     </footer>
   </div>
@@ -314,7 +371,47 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjs2r72vr000e5qlntrz0h4yc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjs9pr2tt0009mtlnqxf5f092" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-base2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/java-base2/" class="article-date">
+  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/java-base2/">java8 lambda 遍历集合</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如何优化mysql</p>
+<p>1、池技术有什么作用，常见的池技术有哪些？<br>tips：参考 设计组件与性能优化.ppt<br>2、用线程池有什么好处，请谈谈线程池的使用场景<br>tips：参考jason java多线程.ppt<br>3、单例的使用场景是什么，如何实现单例？<br>4、synchronzied关键词的使用<br>5、ReentrantLock和synchronized使用的场景是什么，机制有何不同？<br>6、ThreadLocal技术原理是什么，它在架构中常常用来做什么？<br>tips：参考jason 16、ThreadLocal原理及在多层架构中的应用<br>7、多线程yield方法使用于什么场景？<br>8、java多线程有哪些常见的锁，各自用法是什么？<br>tips：至少有四种， synchronized 、 Condition、 ReentrantLock 、 ReadWriteLock<br>9、CountDownLatch用于多线程的什么场景？<br>10、volatile适用于高并发的什么场景？<br>11、多线程join方法用于什么场景？<br>12、java多线程中让所有子线程执行完毕的方法有哪几种？<br>tips：至少有三种<br>13、高并发环境下的计数器如何实现？<br>Tips：至少有6种实现方式，讲10个代码示例、动手实践、头脑风暴、综合地复习知识。<br>14、HashTable、HashMap、ConcurrentHashMap各自的技术原理和使用场景是什么？<br>15、LinkedBlockingQueue、ConcurrentLinkedQueue各自技术原理和使用场景是什么？<br>16、 Java中如何停止一个线程？<br>17、java多线程中有哪些并发流量控制工具类？<br>tips：至少有三种。 CountDownLatch、Semaphore 、CyclicBarrier<br>18、如何理解动态代理<br>19、什么是线程安全？能举几个不是线程安全的数据结构么？<br>20、常见的多线程数据结构有哪些，你用过其中的哪些多线程数据结构？<br>tips：参考 设计组件与性能优化.ppt<br>21、多线程的常见设计模式，你用过其中的哪些设计模式<br>tips：参考 并发设计模式.ppt<br>22、是否熟悉java concurrent包的内容，请讲讲concurrent包有哪些重要的内容？<br>23、多线程的使用场景？<br>tips：参考jason java多线程.ppt<br>24、请讲讲并发编程的CAS理论<br>tips：参考jason java多线程.ppt<br>25、请讲讲并发队列和阻塞队列<br>tips：参考jason java多线程.ppt<br>26、线程池有哪些种类，各自的使用场景是什么？<br>tips：参考jason java多线程.ppt<br>27、请讲讲线程异步处理的原理及关键组件？<br>tips：参考jason  java多线程.ppt<br>28、常见的软件设计原则有哪些，请谈谈开闭原则、单一职责原则<br>tips：参考 对象健身操.ppt<br>29、在实际项目（产品）研发过程中，你是否有使用过多线程，和线程池，如果有，请举例说明（要求用STAR模型）<br>30、多线程的原子操作类的使用场景是什么，你在项目的实际研发过程中是否有使用过原子操作类？（要求用STAR模型）<br>31、如何在多个线程间共享数据？<br>32、线程的状态有哪些，线程状态的使用场景是什么？<br>33、有多个线程T1，T2，T3，怎么确保它们按顺序执行？<br>tips：参考JoinTest<br>34、volatile变量和atomic变量有什么不同？<br>35、wait/notify/notifyAll一般使用于什么场景？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjs9pr2ty000emtln6hu0f53g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -368,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/11/学习-hexo/" data-id="cjs2r72w1000q5qln5bwqm2ot" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/11/学习-hexo/" data-id="cjs9pr2ue0011mtlnoup4vvyy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -415,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/hello-world/" data-id="cjs2r72vo00065qlnpiw861bw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/10/hello-world/" data-id="cjs9pr2u8000pmtlns4su46qr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -472,48 +569,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/start-to-jekyll/" data-id="cjs2r72w0000n5qlnxgtaioil" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-welcome-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/10/welcome-to-jekyll/" class="article-date">
-  <time datetime="2019-01-10T01:45:10.000Z" itemprop="datePublished">2019-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/welcome-to-jekyll/">Welcome to Jekyll!</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
-<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-<p>Jekyll also offers powerful support for code snippets:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% highlight ruby %&#125;</span><br><span class="line">def print_hi(name)</span><br><span class="line">  puts &quot;Hi, #&#123;name&#125;&quot;</span><br><span class="line">end</span><br><span class="line">print_hi(&apos;Tom&apos;)</span><br><span class="line">#=&gt; prints &apos;Hi, Tom&apos; to STDOUT.</span><br><span class="line">&#123;% endhighlight %&#125;</span><br><span class="line"></span><br><span class="line">Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].</span><br><span class="line"></span><br><span class="line">[jekyll-docs]: https://jekyllrb.com/docs/home</span><br><span class="line">[jekyll-gh]:   https://github.com/jekyll/jekyll</span><br><span class="line">[jekyll-talk]: https://talk.jekyllrb.com/</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/welcome-to-jekyll/" data-id="cjs2r72w2000s5qlnony2ikwa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/10/start-to-jekyll/" data-id="cjs9pr2u9000rmtlnfsbke13h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
@@ -529,7 +585,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -560,7 +616,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Jekyll/" style="font-size: 15px;">Jekyll</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mac日常/" style="font-size: 10px;">mac日常</a> <a href="/tags/md/" style="font-size: 10px;">md</a> <a href="/tags/spring-cloud/" style="font-size: 15px;">spring cloud</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Java基础/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/Jekyll/" style="font-size: 13.33px;">Jekyll</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 13.33px;">kafka</a> <a href="/tags/mac日常/" style="font-size: 10px;">mac日常</a> <a href="/tags/md/" style="font-size: 10px;">md</a> <a href="/tags/spring-cloud/" style="font-size: 13.33px;">spring cloud</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
     </div>
   </div>
 
@@ -582,6 +638,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/18/kafka-mac/">kafka mac</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/12/幂等性/">幂等性</a>
           </li>
         
@@ -595,10 +655,6 @@
         
           <li>
             <a href="/2019/02/11/高可用/">高可用</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/29/Eclipse-PlantUML/">Eclipse PlantUML</a>
           </li>
         
       </ul>
