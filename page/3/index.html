@@ -62,6 +62,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-学习-hexo" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/11/学习-hexo/" class="article-date">
+  <time datetime="2019-01-11T14:23:06.000Z" itemprop="datePublished">2019-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/11/学习-hexo/">学习 hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>nodejs</p>
+<h2 id="mac安装nvm"><a href="#mac安装nvm" class="headerlink" title="mac安装nvm"></a>mac安装nvm</h2><p>最新版本还是看官方说明<br><a href="https://github.com/creationix/nvm/blob/master/README.md" target="_blank" rel="noopener">https://github.com/creationix/nvm/blob/master/README.md</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//下载安装</span><br><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br><span class="line"></span><br><span class="line">//环境变量</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line">//查看版本</span><br><span class="line">nvm --version</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nvm install stable ## 安装最新稳定版 node，当前是node v9.5.0 (npm v5.6.0)</span><br><span class="line"></span><br><span class="line">nvm install &lt;version&gt; ## 安装指定版本，可模糊安装，如：安装v4.4.0，既可nvm install v4.4.0，又可nvm install 4.4</span><br><span class="line"></span><br><span class="line">nvm uninstall &lt;version&gt; ## 删除已安装的指定版本，语法与install类似</span><br><span class="line"></span><br><span class="line">nvm use &lt;version&gt; ## 切换使用指定的版本node</span><br><span class="line"></span><br><span class="line">nvm ls ## 列出所有安装的版本</span><br><span class="line"></span><br><span class="line">nvm ls-remote ## 列出所有远程服务器的版本（官方node version list）</span><br><span class="line"></span><br><span class="line">nvm current ## 显示当前的版本</span><br><span class="line"></span><br><span class="line">nvm alias &lt;name&gt; &lt;version&gt; ## 给不同的版本号添加别名</span><br><span class="line"></span><br><span class="line">nvm unalias &lt;name&gt; ## 删除已定义的别名</span><br><span class="line"></span><br><span class="line">nvm reinstall-packages &lt;version&gt; ## 在当前版本 node 环境下，重新全局安装指定版本号的 npm 包</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">看看npm的版本</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">node -v</span><br><span class="line">有的是nodejs -v</span><br></pre></td></tr></table></figure>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>官方文档<br><a href="https://hexo.io/zh-cn/docs/setup" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/setup</a></p>
+<ul>
+<li>升级npm<br>npm install npm -g</li>
+<li>安装<br>npm install -g hexo-cli</li>
+</ul>
+<p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<p>$ hexo init <folder><br>$ cd <folder><br>$ npm install</folder></folder></p>
+<p>添加一篇文章<br>$ hexo new ‘hello word’</p>
+<p>生成静态文件<br>$ hexo generate<br>可以简写：<br>$ hexo g</p>
+<p>启服务<br>$ hexo server</p>
+<p>部署网站<br>$ hexo deploy</p>
+<p>npm install hexo-deployer-git –save</p>
+<p>hexo g -d</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/11/学习-hexo/" data-id="cjsvvdq6v0016nzlnm8a2i6jg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/10/hello-world/" class="article-date">
+  <time datetime="2019-01-10T06:36:54.000Z" itemprop="datePublished">2019-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/10/hello-world/">Hello hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/10/hello-world/" data-id="cjsvvdq6i000fnzln3wc0dh5s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-welcome-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/10/welcome-to-jekyll/" class="article-date">
@@ -91,7 +190,66 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/welcome-to-jekyll/" data-id="cjs9pr2ua000tmtlnjs160j1z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/10/welcome-to-jekyll/" data-id="cjsvvdq6t0012nzlnmp275mvd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-start-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/10/start-to-jekyll/" class="article-date">
+  <time datetime="2019-01-10T01:45:10.000Z" itemprop="datePublished">2019-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/10/start-to-jekyll/">学习Jekyll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装ruby"><a href="#安装ruby" class="headerlink" title="安装ruby"></a>安装ruby</h2><p>不知道为啥我mac自带的ruby安装jekyll总是无法成功，所以只能另外自己重新安装一个<br>先安装rvm：</p>
+<ul>
+<li>下载&amp;安装<br>curl -sSL <a href="https://get.rvm.io" target="_blank" rel="noopener">https://get.rvm.io</a> | bash -s stable </li>
+<li>环境变量<br>source /Users/zlding/.rvm/scripts/rvm  </li>
+<li>查看版本<br>rvm -v</li>
+<li>更新rvm<br>rvm get stable</li>
+<li><p>版本查看<br>rvm list known</p>
+</li>
+<li><p>安装一个版本<br>rvm install 2.5.3<br>rvm use 2.5.3 –default</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v # 查看ruby 版本</span><br><span class="line">$ rvm list known # 列出已知的 ruby 版本</span><br><span class="line">$ rvm install 2.3.0 # 选择指定 ruby 版本进行更新</span><br><span class="line">$ rvm get stable # 更新 rvm</span><br><span class="line">$ rvm use 2.2.2 # 切换到指定 ruby 版本</span><br><span class="line">$ rvm use 2.2.2 --default # 设置指定 ruby 版本为默认版本</span><br><span class="line">$ rvm list # 查询已安装的 ruby 版本</span><br><span class="line">$ rvm remove 1.9.2 # 卸载移除 指定 ruby 版本</span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable # 安装 rvm 环境</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby # 默认安装 rvm 最新版本</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 # 安装 rvm 指定版本</span><br><span class="line">$ source ~/.rvm/scripts/rvm # 载入 rvm</span><br></pre></td></tr></table></figure>
+<h2 id="安装Xcode"><a href="#安装Xcode" class="headerlink" title="安装Xcode"></a>安装Xcode</h2><p>要Xcode/Command Line Tools<br>如果下载不了<br><a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a><br>去下载，自己安装</p>
+<h2 id="安装jekyll"><a href="#安装jekyll" class="headerlink" title="安装jekyll"></a>安装jekyll</h2><p>rvm装好了，选一个ruby，gem也好了</p>
+<p>gem -v<br>gem update –system</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看源列表</span><br><span class="line">gem sources -l</span><br><span class="line"># 将源移除</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line"># 添加国内源</span><br><span class="line">gem sources --add https://gems.ruby-china.org/</span><br><span class="line"># 缓存</span><br><span class="line">gem sources -u</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gem install jekyll</span><br><span class="line">jekyll -v</span><br><span class="line">gem install bundler</span><br><span class="line">gem install jekyll-paginate</span><br><span class="line">gem install jekyll-gist</span><br></pre></td></tr></table></figure>
+<h2 id="github创建一个项目"><a href="#github创建一个项目" class="headerlink" title="github创建一个项目"></a>github创建一个项目</h2><p>github建立一个和用户一摸一样的项目<br>dzl84394.github.io<br>username必须一样<br>后面的.github.io会默认这是一个博客</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jekyll new dzl84394.github.io</span><br><span class="line">创建一个项目dzl84394.github.io</span><br><span class="line">cd dzl84394.github.io</span><br></pre></td></tr></table></figure>
+<p>在_post文件夹添加mk文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bundle</span><br><span class="line">jekyll build</span><br><span class="line">jekyll server</span><br></pre></td></tr></table></figure></p>
+<p>_site 文件夹上传到dzl84394.github.io.git，这边是网站静态文件。<br>网上一直忽略这一点，直接把源文件上传上去，这很坑的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add *</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin git@github.com:dzl84394/dzl84394.github.io.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/10/start-to-jekyll/" data-id="cjsvvdq6u0014nzlns81t7wwj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
@@ -147,7 +305,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -160,23 +318,23 @@
       <ul>
         
           <li>
+            <a href="/2019/03/05/分布式事务一致性/">分布式事务一致性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/01/java面试内存相关/">java面试内存相关</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/java-面试题/">java 面试题</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/18/kafka-mac/">kafka mac</a>
           </li>
         
           <li>
             <a href="/2019/02/12/幂等性/">幂等性</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/SpringMVC与Struts2的对比/">SpringMVC与Struts2的对比</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/抽象类和接口区别/">抽象类和接口区别</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/11/高可用/">高可用</a>
           </li>
         
       </ul>

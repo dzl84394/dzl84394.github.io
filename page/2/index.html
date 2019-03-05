@@ -62,6 +62,183 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spring-cloud-1-eureka-server" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/28/spring-cloud-1-eureka-server/" class="article-date">
+  <time datetime="2019-01-28T02:08:19.000Z" itemprop="datePublished">2019-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/28/spring-cloud-1-eureka-server/">spring cloud (1) eureka server</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="spring-cloud-学习（1）-eureka-server"><a href="#spring-cloud-学习（1）-eureka-server" class="headerlink" title="spring cloud 学习（1） eureka server"></a>spring cloud 学习（1） eureka server</h1><p>[toc]</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>首先 参考<a href="https://blog.csdn.net/forezp/article/details/70148833/" target="_blank" rel="noopener">https://blog.csdn.net/forezp/article/details/70148833/</a><br>这个博客，写的很好。</p>
+<p>首先创建一个maven 的 simple porject项目，只有pom的那种，然后建立module作为子项目，</p>
+<h2 id="父节点的pom-xml"><a href="#父节点的pom-xml" class="headerlink" title="父节点的pom.xml"></a>父节点的pom.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">    &lt;groupId&gt;com.dms&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;dms-ums&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.0.1&lt;/version&gt;</span><br><span class="line">    &lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line">    &lt;description&gt;用户管理中心user message centor&lt;/description&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.0.3.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;relativePath/&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">        &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">        &lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">        &lt;spring-cloud.version&gt;Finchley.RELEASE&lt;/spring-cloud.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;modules&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-order&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-pay&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-member&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-account&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-contract&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-delivery&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-metadata&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-server&lt;/module&gt;</span><br><span class="line">        &lt;module&gt;dms-ums-user&lt;/module&gt;</span><br><span class="line">  &lt;/modules&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">            &lt;exclusions&gt;</span><br><span class="line">                &lt;exclusion&gt;</span><br><span class="line">                    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                    &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt;</span><br><span class="line">                &lt;/exclusion&gt;</span><br><span class="line">            &lt;/exclusions&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-log4j2&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencyManagement&gt;</span><br><span class="line">        &lt;dependencies&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;$&#123;spring-cloud.version&#125;&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line">    &lt;/dependencyManagement&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;skip&gt;true&lt;/skip&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p>这边我建立了不是module在里面，首先需要一个module工程作为服务注册中心，即Eureka Server：dms-ums-server</p>
+<h2 id="dms-ums-server的pom-xml"><a href="#dms-ums-server的pom-xml" class="headerlink" title="dms-ums-server的pom.xml"></a>dms-ums-server的pom.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project</span><br><span class="line">    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><br><span class="line">    xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;com.dms&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;dms-ums&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;0.0.1&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;artifactId&gt;dms-ums-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;packaging&gt;war&lt;/packaging&gt;</span><br><span class="line">    &lt;name&gt;dms-ums-server Maven Webapp&lt;/name&gt;</span><br><span class="line">    &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;!-- 用于注册中心访问账号认证 --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;finalName&gt;dms-ums-server&lt;/finalName&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h2><p>参考的博客里面，名字写错了，坑的一笔<br>也可以写application.properties，差不多，意思一样就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8761</span><br><span class="line">     </span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: localhost</span><br><span class="line">  client:</span><br><span class="line">    registerWithEureka: false</span><br><span class="line">    fetchRegistry: false</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span><br><span class="line">      </span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: eurka-server</span><br></pre></td></tr></table></figure>
+<h2 id="Application-java"><a href="#Application-java" class="headerlink" title="Application.java"></a>Application.java</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.dms;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.EnableAutoConfiguration;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEurekaServer</span><br><span class="line">@EnableAutoConfiguration(exclude = &#123;org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class&#125;)</span><br><span class="line">public class EurekaServerApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(EurekaServerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="security"><a href="#security" class="headerlink" title="security"></a>security</h2><p>因为多引用了一个spring-boot-starter-security，<br>原来网上是说加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security:</span><br><span class="line">  basic:</span><br><span class="line">    enabled: false</span><br></pre></td></tr></table></figure></p>
+<p>就可以了，但是还是报错，发现spring boot 2以后是不支持这个了。<br>要在EurekaServerApplication或者其他配置的类上面，加一个@EnableAutoConfiguration(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/28/spring-cloud-1-eureka-server/" data-id="cjsvvdq6q000unzln3r1sr22f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mac" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/28/mac/" class="article-date">
+  <time datetime="2019-01-28T01:45:10.000Z" itemprop="datePublished">2019-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/日常备忘/">日常备忘</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/28/mac/">mac日常操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-多开sts或eclipse"><a href="#1-多开sts或eclipse" class="headerlink" title="1.多开sts或eclipse"></a>1.多开sts或eclipse</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -n /Applications/STS.app/</span><br></pre></td></tr></table></figure>
+<h2 id="2-日常软件启动"><a href="#2-日常软件启动" class="headerlink" title="2.日常软件启动"></a>2.日常软件启动</h2><ul>
+<li><p>mongo<br>sudo ./bin/mongod </p>
+</li>
+<li><p>kafka &amp;zk<br>sudo ./zookeeper-server-start.sh ../config/zookeeper.properties<br>sudo ./kafka-server-start.sh ../config/server.properties</p>
+</li>
+</ul>
+<p>./kafka-console-producer.sh –broker-list localhost:9092 –topic test</p>
+<ul>
+<li>redis<br>cd /usr/local/redis/<br>./src/redis-server </li>
+</ul>
+<h2 id="3-安装Navicat-Premium-for-Mac"><a href="#3-安装Navicat-Premium-for-Mac" class="headerlink" title="3.安装Navicat Premium for Mac"></a>3.安装Navicat Premium for Mac</h2><p>网上的教程：<a href="https://www.jianshu.com/p/f3ef78deadaa" target="_blank" rel="noopener">https://www.jianshu.com/p/f3ef78deadaa</a></p>
+<p>有2个坑<br>1，就是rpk文件，最新版已经没有了，这个路子走不通了，得下个12.0.22之前的<br>2，教程里面的rsa的 <a href="http://tool.chacuo.net/cryptrsaprikey" target="_blank" rel="noopener">http://tool.chacuo.net/cryptrsaprikey</a> 加密解密网站，在移动网站是打不开的，电信没问题</p>
+<h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>1，防止中断<br>公司搞了跳板机，堡垒机一类的，导致很容易掉线，堡垒机又不记录密码，坑！<br>【terminal】 下 【send string】设置每60秒发一个空格，可以防止中断<br>2，记住密码<br>默认的mac版是不记录密码的，菜单preferences–general，找到mac options。然后去掉Use KeyChain选项，可以让记住密码，</p>
+<h2 id="4-sublime破解"><a href="#4-sublime破解" class="headerlink" title="4.sublime破解"></a>4.sublime破解</h2><p><a href="https://blog.csdn.net/hdp134793/article/details/82745967" target="_blank" rel="noopener">https://blog.csdn.net/hdp134793/article/details/82745967</a></p>
+<h2 id="5-安装rdm（redis可视化工具）"><a href="#5-安装rdm（redis可视化工具）" class="headerlink" title="5.安装rdm（redis可视化工具）"></a>5.安装rdm（redis可视化工具）</h2><ul>
+<li><p>1，直接安装rdm dmg文件<br><a href="https://pan.baidu.com/s/10vpdhw7YfDD7G4yZCGtqQg" target="_blank" rel="noopener">https://pan.baidu.com/s/10vpdhw7YfDD7G4yZCGtqQg</a><br>下载这个文件</p>
+</li>
+<li><p>2，使用brew cask install rdm<br>会报错：<br>Cask ‘rdm’ is unavailable: No Cask with this name exists.<br>这说明安装包已经不在了，之前是可以使用这个命令行直接下载的</p>
+</li>
+</ul>
+<h2 id="6-环境变量"><a href="#6-环境变量" class="headerlink" title="6.环境变量"></a>6.环境变量</h2><p>要让打开终端时也读取~/.bashrc，就在~/.bash_profile当中加入这一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[ -s ~/.bashrc ]] &amp;&amp; source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>这一行的意思是当.bashrc不为空时source它</p>
+<h2 id="7-Mac-Eclipse安装lombok"><a href="#7-Mac-Eclipse安装lombok" class="headerlink" title="7.Mac Eclipse安装lombok"></a>7.Mac Eclipse安装lombok</h2><p>windows只要maven加一个包就好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是mac上是不行的（部门较多人用mac，lomnok有点坑啊）<br>~/.m2/repository/org/projectlombok/version/ 下<br>复制一个lombok-1.18.2.jar<br>复制到<br>/Applications/STS.app/Contents/Eclipse/ 下，改个名字，就直接lombok.jar 好了</p>
+<p>然后eclipse.ini（STS.ini）尾巴上加一个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-javaagent:../Eclipse/lombok.jar</span><br><span class="line">-vmargs -javaagent:lombok.jar</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/28/mac/" data-id="cjsvvdq6p000snzlnrakj1wf9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac日常/">mac日常</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-java-base3" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/23/java-base3/" class="article-date">
+  <time datetime="2019-01-23T09:27:12.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/23/java-base3/">项目启动前加载数据CommandLineRunner&amp;PostConstruct</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CommandLineRunner-amp-ApplicationRunner"><a href="#CommandLineRunner-amp-ApplicationRunner" class="headerlink" title="CommandLineRunner&amp;ApplicationRunner"></a>CommandLineRunner&amp;ApplicationRunner</h2><p>实现了CommandLineRunner接口的Component会在所有Spring Beans都初始化之后，SpringApplication.run()之前执行，非常适合在应用程序启动之初进行一些数据初始化的工作</p>
+<p>CommandLineRunner的参数是最原始的参数，没有做任何处理。ApplicationRunner的参数是ApplicationArguments，是对原始参数做了进一步的封装。</p>
+<h2 id="PostConstruct和-PreConstruct"><a href="#PostConstruct和-PreConstruct" class="headerlink" title="@PostConstruct和@PreConstruct"></a>@PostConstruct和@PreConstruct</h2><h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><ul>
+<li><p>Application.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        </span><br><span class="line">        System.err.println(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;Application11111111111&quot;);</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">        System.err.println(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;Application2222222222&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MyPostConstruct</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class MyPostConstruct &#123;</span><br><span class="line">    @PostConstruct</span><br><span class="line">    private void init() &#123;</span><br><span class="line">        System.err.println(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;PostConstruct=======&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MyCommandLineRunner</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@Order(value = 1)</span><br><span class="line">public class MyCommandLineRunner implements CommandLineRunner&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run(String... args) throws Exception &#123;</span><br><span class="line">        System.err.println(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;MyCommandLineRunner=======&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MyCommandLineRunner2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Order(value = 2)</span><br><span class="line">public class MyCommandLineRunner2 implements CommandLineRunner&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run(String... args) throws Exception &#123;</span><br><span class="line">        System.err.println(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;MyCommandLineRunner2=======&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行循序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;Application11111111111</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;PostConstruct=======</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;MyCommandLineRunner=======</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;MyCommandLineRunner2=======</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;Application2222222222</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/23/java-base3/" data-id="cjsvvdq6k000inzln7fved7ve" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/">springboot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java-maven" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/java-maven/" class="article-date">
@@ -95,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/java-maven/" data-id="cjs9pr2tv000cmtlnmgb0a6ts" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/java-maven/" data-id="cjsvvdq6k000jnzlna0bqqf2f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -150,10 +327,12 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <h2 id="crud"><a href="#crud" class="headerlink" title="crud"></a>crud</h2><p>登陆shell<br>./cqlsh 172.16.101.54 9042</p>
 <p>cassandra-cli –host 172.16.101.54 –port 9160</p>
 <ul>
-<li>sql<br>CREATE KEYSPACE yiibai_ks WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</li>
+<li>sql<br>CREATE KEYSPACE yiibai_ks WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE KEYSPACE common_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</li>
 </ul>
+<p>CREATE KEYSPACE miguvideo_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE yiibai_ks;</p>
-<p>CREATE TABLE student(<br>   student_id int PRIMARY KEY,<br>   student_name text,<br>   student_city text,<br>   student_fees varint,<br>   student_phone varint<br>);</p>
+<p>CREATE TABLE miguvideo_phonenum(<br>   id text PRIMARY KEY,<br>   key text,<br>   value text<br>);</p>
+<p>id,key,key</p>
 <p>CREATE KEYSPACE tutorialspoint<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE tutorialspoint;<br>CREATE TABLE emp(<br>   emp_id int PRIMARY KEY,<br>   emp_name text,<br>   emp_city text,<br>   emp_sal varint,<br>   emp_phone varint<br>   );</p>
 <p>   INSERT INTO emp (emp_id, emp_name, emp_city,<br>   emp_phone, emp_sal) VALUES(1,’ram’, ‘Hyderabad’, 9848022338, 50000);</p>
@@ -165,13 +344,11 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <p>create INDEX on testList2(k0);</p>
 <p>设置超时时间，2分钟<br>./cqlsh –request-timeout 120 127.0.0.1  </p>
 <p>CREATE KEYSPACE miguvideo_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE miguvideo_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
-<p>CREATE KEYSPACE common_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE common_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
-<p>CREATE KEYSPACE common_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE common_userid(<br>   common_carrierJiangsuProvince text PRIMARY KEY,<br>   userId text,<br>   );</p>
 <h2 id="java的crud"><a href="#java的crud" class="headerlink" title="java的crud"></a>java的crud</h2><h2 id="批量执行"><a href="#批量执行" class="headerlink" title="批量执行"></a>批量执行</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjs9pr2tp0003mtlnl9l2ernl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjsvvdq6d0004nzln1i0b1hqk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -216,12 +393,12 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <li><p>修改配置<br>打开D:\kafka_2.11-0.10.2.0\config\zookeeper.properties<br>dataDir=D:\logs\zookeeper<br>打开D:\kafka_2.11-0.10.2.0\config\server.properties<br>log.dirs=D:\logs\kafka </p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">启动zk</span><br><span class="line">.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties</span><br><span class="line">启动kafka</span><br><span class="line">.\bin\windows\kafka-server-start.bat .\config\server.properties</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 检查list</span><br><span class="line"> ./kafka-topics.sh --list --zookeeper  localhost:2181</span><br><span class="line"> kafka-topics.bat --list --zookeeper  localhost:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.148.53:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.149.41:2181</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"> 添加topic （最后的test改成topic）</span><br><span class="line">kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line">./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic filter_session_start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic logstash-contract</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">进入生产者 （最后的test改成topic）</span><br><span class="line">.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> ./kafka-console-producer.sh --broker-list 10.200.86.126:9092 --topic filter_session_start</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list 10.125.148.53:9200 --topic logstash-authorization</span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic logstash-contract</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">可以随便敲键盘，查看监听是否收到</span><br><span class="line"></span><br><span class="line">进入消费者 （最后的test改成topic）</span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat --zookeeper localhost:2181 --topic test </span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat  --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-authorization --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.149.41:2181 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-contract --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">检查group</span><br><span class="line">./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group filter_session_start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">启动zk</span><br><span class="line">.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties</span><br><span class="line">启动kafka</span><br><span class="line">.\bin\windows\kafka-server-start.bat .\config\server.properties</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 检查list</span><br><span class="line"> ./kafka-topics.sh --list --zookeeper  localhost:2181</span><br><span class="line"> kafka-topics.bat --list --zookeeper  localhost:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.148.53:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.149.41:2181</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"> 添加topic （最后的test改成topic）</span><br><span class="line">kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line">./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic filter_session_start</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic logstash-authorization</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic MACTIVITY_WARE</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">进入生产者 （最后的test改成topic）</span><br><span class="line">.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> ./kafka-console-producer.sh --broker-list 10.200.86.126:9092 --topic filter_session_start</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list 10.125.148.53:9200 --topic logstash-authorization</span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic logstash-contract</span><br><span class="line"></span><br><span class="line"> ./kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> </span><br><span class="line"> ./kafka-console-producer.sh --broker-list localhost:9092 --topic MACTIVITY_WARE</span><br><span class="line"></span><br><span class="line">可以随便敲键盘，查看监听是否收到</span><br><span class="line"></span><br><span class="line">进入消费者 （最后的test改成topic）</span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat --zookeeper localhost:2181 --topic test </span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat  --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-authorization --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.149.41:2181 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-contract --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">检查group</span><br><span class="line">./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group filter_session_start</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/kafka-windows/" data-id="cjs9pr2th0000mtlnfgky2gih" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/kafka-windows/" data-id="cjsvvdq650000nzln8dct3kze" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
@@ -259,7 +436,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjs9pr2tr0005mtlntqsvz08z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjsvvdq6e0005nzln0ro11orx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -297,7 +474,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjs9pr2ts0007mtln1zso29c3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjsvvdq6f0008nzlnrmhnuep4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -371,7 +548,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjs9pr2tt0009mtlnqxf5f092" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjsvvdq6g000anzlngkc9od2h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -411,168 +588,10 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjs9pr2ty000emtln6hu0f53g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjsvvdq6h000dnzln11nuaygj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-学习-hexo" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/11/学习-hexo/" class="article-date">
-  <time datetime="2019-01-11T14:23:06.000Z" itemprop="datePublished">2019-01-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/11/学习-hexo/">学习 hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>nodejs</p>
-<h2 id="mac安装nvm"><a href="#mac安装nvm" class="headerlink" title="mac安装nvm"></a>mac安装nvm</h2><p>最新版本还是看官方说明<br><a href="https://github.com/creationix/nvm/blob/master/README.md" target="_blank" rel="noopener">https://github.com/creationix/nvm/blob/master/README.md</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//下载安装</span><br><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br><span class="line"></span><br><span class="line">//环境变量</span><br><span class="line">source ~/.bashrc</span><br><span class="line"></span><br><span class="line">//查看版本</span><br><span class="line">nvm --version</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nvm install stable ## 安装最新稳定版 node，当前是node v9.5.0 (npm v5.6.0)</span><br><span class="line"></span><br><span class="line">nvm install &lt;version&gt; ## 安装指定版本，可模糊安装，如：安装v4.4.0，既可nvm install v4.4.0，又可nvm install 4.4</span><br><span class="line"></span><br><span class="line">nvm uninstall &lt;version&gt; ## 删除已安装的指定版本，语法与install类似</span><br><span class="line"></span><br><span class="line">nvm use &lt;version&gt; ## 切换使用指定的版本node</span><br><span class="line"></span><br><span class="line">nvm ls ## 列出所有安装的版本</span><br><span class="line"></span><br><span class="line">nvm ls-remote ## 列出所有远程服务器的版本（官方node version list）</span><br><span class="line"></span><br><span class="line">nvm current ## 显示当前的版本</span><br><span class="line"></span><br><span class="line">nvm alias &lt;name&gt; &lt;version&gt; ## 给不同的版本号添加别名</span><br><span class="line"></span><br><span class="line">nvm unalias &lt;name&gt; ## 删除已定义的别名</span><br><span class="line"></span><br><span class="line">nvm reinstall-packages &lt;version&gt; ## 在当前版本 node 环境下，重新全局安装指定版本号的 npm 包</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">看看npm的版本</span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line">node -v</span><br><span class="line">有的是nodejs -v</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>官方文档<br><a href="https://hexo.io/zh-cn/docs/setup" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/setup</a></p>
-<ul>
-<li>升级npm<br>npm install npm -g</li>
-<li>安装<br>npm install -g hexo-cli</li>
-</ul>
-<p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
-<p>$ hexo init <folder><br>$ cd <folder><br>$ npm install</folder></folder></p>
-<p>添加一篇文章<br>$ hexo new ‘hello word’</p>
-<p>生成静态文件<br>$ hexo generate<br>可以简写：<br>$ hexo g</p>
-<p>启服务<br>$ hexo server</p>
-<p>部署网站<br>$ hexo deploy</p>
-<p>npm install hexo-deployer-git –save</p>
-<p>hexo g -d</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/11/学习-hexo/" data-id="cjs9pr2ue0011mtlnoup4vvyy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/10/hello-world/" class="article-date">
-  <time datetime="2019-01-10T06:36:54.000Z" itemprop="datePublished">2019-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/hello-world/">Hello hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/hello-world/" data-id="cjs9pr2u8000pmtlns4su46qr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-start-to-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/10/start-to-jekyll/" class="article-date">
-  <time datetime="2019-01-10T01:45:10.000Z" itemprop="datePublished">2019-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/start-to-jekyll/">学习Jekyll</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装ruby"><a href="#安装ruby" class="headerlink" title="安装ruby"></a>安装ruby</h2><p>不知道为啥我mac自带的ruby安装jekyll总是无法成功，所以只能另外自己重新安装一个<br>先安装rvm：</p>
-<ul>
-<li>下载&amp;安装<br>curl -sSL <a href="https://get.rvm.io" target="_blank" rel="noopener">https://get.rvm.io</a> | bash -s stable </li>
-<li>环境变量<br>source /Users/zlding/.rvm/scripts/rvm  </li>
-<li>查看版本<br>rvm -v</li>
-<li>更新rvm<br>rvm get stable</li>
-<li><p>版本查看<br>rvm list known</p>
-</li>
-<li><p>安装一个版本<br>rvm install 2.5.3<br>rvm use 2.5.3 –default</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v # 查看ruby 版本</span><br><span class="line">$ rvm list known # 列出已知的 ruby 版本</span><br><span class="line">$ rvm install 2.3.0 # 选择指定 ruby 版本进行更新</span><br><span class="line">$ rvm get stable # 更新 rvm</span><br><span class="line">$ rvm use 2.2.2 # 切换到指定 ruby 版本</span><br><span class="line">$ rvm use 2.2.2 --default # 设置指定 ruby 版本为默认版本</span><br><span class="line">$ rvm list # 查询已安装的 ruby 版本</span><br><span class="line">$ rvm remove 1.9.2 # 卸载移除 指定 ruby 版本</span><br><span class="line"></span><br><span class="line">$ curl -L https://get.rvm.io | bash -s stable # 安装 rvm 环境</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby # 默认安装 rvm 最新版本</span><br><span class="line">$ curl -sSL https://get.rvm.io | bash -s stable --ruby=2.3.0 # 安装 rvm 指定版本</span><br><span class="line">$ source ~/.rvm/scripts/rvm # 载入 rvm</span><br></pre></td></tr></table></figure>
-<h2 id="安装Xcode"><a href="#安装Xcode" class="headerlink" title="安装Xcode"></a>安装Xcode</h2><p>要Xcode/Command Line Tools<br>如果下载不了<br><a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">https://developer.apple.com/download/more/</a><br>去下载，自己安装</p>
-<h2 id="安装jekyll"><a href="#安装jekyll" class="headerlink" title="安装jekyll"></a>安装jekyll</h2><p>rvm装好了，选一个ruby，gem也好了</p>
-<p>gem -v<br>gem update –system</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查看源列表</span><br><span class="line">gem sources -l</span><br><span class="line"># 将源移除</span><br><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line"># 添加国内源</span><br><span class="line">gem sources --add https://gems.ruby-china.org/</span><br><span class="line"># 缓存</span><br><span class="line">gem sources -u</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gem install jekyll</span><br><span class="line">jekyll -v</span><br><span class="line">gem install bundler</span><br><span class="line">gem install jekyll-paginate</span><br><span class="line">gem install jekyll-gist</span><br></pre></td></tr></table></figure>
-<h2 id="github创建一个项目"><a href="#github创建一个项目" class="headerlink" title="github创建一个项目"></a>github创建一个项目</h2><p>github建立一个和用户一摸一样的项目<br>dzl84394.github.io<br>username必须一样<br>后面的.github.io会默认这是一个博客</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jekyll new dzl84394.github.io</span><br><span class="line">创建一个项目dzl84394.github.io</span><br><span class="line">cd dzl84394.github.io</span><br></pre></td></tr></table></figure>
-<p>在_post文件夹添加mk文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bundle</span><br><span class="line">jekyll build</span><br><span class="line">jekyll server</span><br></pre></td></tr></table></figure></p>
-<p>_site 文件夹上传到dzl84394.github.io.git，这边是网站静态文件。<br>网上一直忽略这一点，直接把源文件上传上去，这很坑的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add *</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin git@github.com:dzl84394/dzl84394.github.io.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/10/start-to-jekyll/" data-id="cjs9pr2u9000rmtlnfsbke13h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li></ul>
 
     </footer>
   </div>
@@ -625,7 +644,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -638,23 +657,23 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       <ul>
         
           <li>
+            <a href="/2019/03/05/分布式事务一致性/">分布式事务一致性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/01/java面试内存相关/">java面试内存相关</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/java-面试题/">java 面试题</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/18/kafka-mac/">kafka mac</a>
           </li>
         
           <li>
             <a href="/2019/02/12/幂等性/">幂等性</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/SpringMVC与Struts2的对比/">SpringMVC与Struts2的对比</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/抽象类和接口区别/">抽象类和接口区别</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/11/高可用/">高可用</a>
           </li>
         
       </ul>

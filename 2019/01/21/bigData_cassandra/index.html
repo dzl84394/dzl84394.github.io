@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="dails blog">
 <meta property="og:description" content="安装 下载教程是 2.1.18，官网已经没有了，只有  2.1.20https://mirrors.cnnic.cn/apache/cassandra/2.1.20/apache-cassandra-2.1.20-bin.tar.gz  tar zxvf apache-cassandra-2.1.20-bin.tar.gz  mv apache-cassandra-2.1.20 cassandra">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-15T14:03:01.651Z">
+<meta property="og:updated_time" content="2019-03-05T12:25:14.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cassandra 入门">
 <meta name="twitter:description" content="安装 下载教程是 2.1.18，官网已经没有了，只有  2.1.20https://mirrors.cnnic.cn/apache/cassandra/2.1.20/apache-cassandra-2.1.20-bin.tar.gz  tar zxvf apache-cassandra-2.1.20-bin.tar.gz  mv apache-cassandra-2.1.20 cassandra">
@@ -108,10 +108,12 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <h2 id="crud"><a href="#crud" class="headerlink" title="crud"></a>crud</h2><p>登陆shell<br>./cqlsh 172.16.101.54 9042</p>
 <p>cassandra-cli –host 172.16.101.54 –port 9160</p>
 <ul>
-<li>sql<br>CREATE KEYSPACE yiibai_ks WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</li>
+<li>sql<br>CREATE KEYSPACE yiibai_ks WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE KEYSPACE common_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</li>
 </ul>
+<p>CREATE KEYSPACE miguvideo_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE yiibai_ks;</p>
-<p>CREATE TABLE student(<br>   student_id int PRIMARY KEY,<br>   student_name text,<br>   student_city text,<br>   student_fees varint,<br>   student_phone varint<br>);</p>
+<p>CREATE TABLE miguvideo_phonenum(<br>   id text PRIMARY KEY,<br>   key text,<br>   value text<br>);</p>
+<p>id,key,key</p>
 <p>CREATE KEYSPACE tutorialspoint<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE tutorialspoint;<br>CREATE TABLE emp(<br>   emp_id int PRIMARY KEY,<br>   emp_name text,<br>   emp_city text,<br>   emp_sal varint,<br>   emp_phone varint<br>   );</p>
 <p>   INSERT INTO emp (emp_id, emp_name, emp_city,<br>   emp_phone, emp_sal) VALUES(1,’ram’, ‘Hyderabad’, 9848022338, 50000);</p>
@@ -123,13 +125,11 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <p>create INDEX on testList2(k0);</p>
 <p>设置超时时间，2分钟<br>./cqlsh –request-timeout 120 127.0.0.1  </p>
 <p>CREATE KEYSPACE miguvideo_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE miguvideo_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
-<p>CREATE KEYSPACE common_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE common_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
-<p>CREATE KEYSPACE common_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE common_userid(<br>   common_carrierJiangsuProvince text PRIMARY KEY,<br>   userId text,<br>   );</p>
 <h2 id="java的crud"><a href="#java的crud" class="headerlink" title="java的crud"></a>java的crud</h2><h2 id="批量执行"><a href="#批量执行" class="headerlink" title="批量执行"></a>批量执行</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjs9pr2tp0003mtlnl9l2ernl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjsvvdq6d0004nzln1i0b1hqk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -197,7 +197,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -210,23 +210,23 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       <ul>
         
           <li>
+            <a href="/2019/03/05/分布式事务一致性/">分布式事务一致性</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/01/java面试内存相关/">java面试内存相关</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/java-面试题/">java 面试题</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/18/kafka-mac/">kafka mac</a>
           </li>
         
           <li>
             <a href="/2019/02/12/幂等性/">幂等性</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/SpringMVC与Struts2的对比/">SpringMVC与Struts2的对比</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/抽象类和接口区别/">抽象类和接口区别</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/11/高可用/">高可用</a>
           </li>
         
       </ul>
