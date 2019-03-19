@@ -62,6 +62,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spring-cloud-2-eureka-client" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/28/spring-cloud-2-eureka-client/" class="article-date">
+  <time datetime="2019-01-28T02:32:39.000Z" itemprop="datePublished">2019-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/28/spring-cloud-2-eureka-client/">spring cloud（2） eureka client</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有了server 之后，可以写一个client</p>
+<h2 id="pom"><a href="#pom" class="headerlink" title="pom"></a>pom</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project</span><br><span class="line">    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><br><span class="line">    xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;com.dms&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;dms-ums&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;0.0.1&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;groupId&gt;com.dms&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;dms-ums-user&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.0.1&lt;/version&gt;</span><br><span class="line">    &lt;name&gt;dms-ums-user&lt;/name&gt;</span><br><span class="line">    &lt;url&gt;http://maven.apache.org&lt;/url&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8762</span><br><span class="line">     </span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: localhost</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br><span class="line">      </span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: service-user</span><br></pre></td></tr></table></figure>
+<h2 id="UserApplication"><a href="#UserApplication" class="headerlink" title="UserApplication"></a>UserApplication</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.dms;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.cloud.netflix.eureka.EnableEurekaClient;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEurekaClient</span><br><span class="line">public class UserApplication &#123;</span><br><span class="line"></span><br><span class="line">     public static void main(String[] args) &#123;</span><br><span class="line">            SpringApplication.run( UserApplication.class, args );</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.dms.controller;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class IndexController &#123;</span><br><span class="line">    @Value(&quot;$&#123;server.port&#125;&quot;)</span><br><span class="line">    String port;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;/hi&quot;)</span><br><span class="line">    public String home(@RequestParam(value = &quot;name&quot;, defaultValue = &quot;forezp&quot;) String name) &#123;</span><br><span class="line">        return &quot;hi &quot; + name + &quot; ,i am from port:&quot; + port;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/28/spring-cloud-2-eureka-client/" data-id="cjtfdkjv60017ygln1g2yw413" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-spring-cloud-1-eureka-server" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/28/spring-cloud-1-eureka-server/" class="article-date">
@@ -103,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/28/spring-cloud-1-eureka-server/" data-id="cjsvvdq6q000unzln3r1sr22f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/28/spring-cloud-1-eureka-server/" data-id="cjtfdkjv30011yglnxn45oxfy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/">spring cloud</a></li></ul>
@@ -171,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/28/mac/" data-id="cjsvvdq6p000snzlnrakj1wf9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/28/mac/" data-id="cjtfdkjuz000syglnzn7xia69" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac日常/">mac日常</a></li></ul>
@@ -227,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/java-base3/" data-id="cjsvvdq6k000inzln7fved7ve" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/java-base3/" data-id="cjtfdkjus000gyglnxfl9mv2q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/">springboot</a></li></ul>
@@ -272,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/java-maven/" data-id="cjsvvdq6k000jnzlna0bqqf2f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/java-maven/" data-id="cjtfdkjuw000lyglnekp5u2lj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -331,7 +377,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 </ul>
 <p>CREATE KEYSPACE miguvideo_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE yiibai_ks;</p>
-<p>CREATE TABLE miguvideo_phonenum(<br>   id text PRIMARY KEY,<br>   key text,<br>   value text<br>);</p>
+<p>CREATE TABLE common_phoneNum(<br>   id text PRIMARY KEY,<br>   key text,<br>   value text<br>);<br>CREATE KEYSPACE common_userindex_db<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>id,key,key</p>
 <p>CREATE KEYSPACE tutorialspoint<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE tutorialspoint;<br>CREATE TABLE emp(<br>   emp_id int PRIMARY KEY,<br>   emp_name text,<br>   emp_city text,<br>   emp_sal varint,<br>   emp_phone varint<br>   );</p>
@@ -344,11 +390,14 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <p>create INDEX on testList2(k0);</p>
 <p>设置超时时间，2分钟<br>./cqlsh –request-timeout 120 127.0.0.1  </p>
 <p>CREATE KEYSPACE miguvideo_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE miguvideo_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
+<ul>
+<li>删除<br>DELETE FROM emp WHERE emp_id=3;</li>
+</ul>
 <h2 id="java的crud"><a href="#java的crud" class="headerlink" title="java的crud"></a>java的crud</h2><h2 id="批量执行"><a href="#批量执行" class="headerlink" title="批量执行"></a>批量执行</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjsvvdq6d0004nzln1i0b1hqk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjtfdkjue0001ygln4fccdaf9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -393,53 +442,15 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <li><p>修改配置<br>打开D:\kafka_2.11-0.10.2.0\config\zookeeper.properties<br>dataDir=D:\logs\zookeeper<br>打开D:\kafka_2.11-0.10.2.0\config\server.properties<br>log.dirs=D:\logs\kafka </p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">启动zk</span><br><span class="line">.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties</span><br><span class="line">启动kafka</span><br><span class="line">.\bin\windows\kafka-server-start.bat .\config\server.properties</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 检查list</span><br><span class="line"> ./kafka-topics.sh --list --zookeeper  localhost:2181</span><br><span class="line"> kafka-topics.bat --list --zookeeper  localhost:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.148.53:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.149.41:2181</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"> 添加topic （最后的test改成topic）</span><br><span class="line">kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line">./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic filter_session_start</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic logstash-authorization</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic MACTIVITY_WARE</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">进入生产者 （最后的test改成topic）</span><br><span class="line">.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> ./kafka-console-producer.sh --broker-list 10.200.86.126:9092 --topic filter_session_start</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list 10.125.148.53:9200 --topic logstash-authorization</span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic logstash-contract</span><br><span class="line"></span><br><span class="line"> ./kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> </span><br><span class="line"> ./kafka-console-producer.sh --broker-list localhost:9092 --topic MACTIVITY_WARE</span><br><span class="line"></span><br><span class="line">可以随便敲键盘，查看监听是否收到</span><br><span class="line"></span><br><span class="line">进入消费者 （最后的test改成topic）</span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat --zookeeper localhost:2181 --topic test </span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat  --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-authorization --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.149.41:2181 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-contract --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">检查group</span><br><span class="line">./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group filter_session_start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">启动zk</span><br><span class="line">.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties</span><br><span class="line">启动kafka</span><br><span class="line">.\bin\windows\kafka-server-start.bat .\config\server.properties</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 检查list</span><br><span class="line"> ./kafka-topics.sh --list --zookeeper  localhost:2181</span><br><span class="line"> kafka-topics.bat --list --zookeeper  localhost:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.148.53:2181</span><br><span class="line">  ./kafka-topics.sh --list --zookeeper  10.125.149.41:2181</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"> 添加topic （最后的test改成topic）</span><br><span class="line">kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line">./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic filter_session_start</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic logstash-authorization</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic MACTIVITY_WARE</span><br><span class="line"></span><br><span class="line">./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic ORIGINAL_DPHD_UNBIND</span><br><span class="line"></span><br><span class="line">进入生产者 （最后的test改成topic）</span><br><span class="line">.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test</span><br><span class="line"></span><br><span class="line">./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> ./kafka-console-producer.sh --broker-list 10.200.86.126:9092 --topic filter_session_start</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list 10.125.148.53:9200 --topic logstash-authorization</span><br><span class="line"> </span><br><span class="line"> ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic logstash-contract</span><br><span class="line"></span><br><span class="line"> ./kafka-console-producer.sh --broker-list localhost:9092 --topic test</span><br><span class="line"> </span><br><span class="line"> ./kafka-console-producer.sh --broker-list localhost:9092 --topic MACTIVITY_WARE</span><br><span class="line">  ./kafka-console-producer.sh --broker-list localhost:9092 --topic ORIGINAL_DPHD_UNBIND</span><br><span class="line">   ./kafka-console-producer.sh --broker-list localhost:9092 --topic ORIGINAL_DPHD_BIND</span><br><span class="line"></span><br><span class="line">可以随便敲键盘，查看监听是否收到</span><br><span class="line"></span><br><span class="line">进入消费者 （最后的test改成topic）</span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat --zookeeper localhost:2181 --topic test </span><br><span class="line"></span><br><span class="line">kafka-console-consumer.bat  --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning</span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-authorization --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.149.41:2181 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line">./kafka-console-consumer.sh --zookeeper 10.125.148.53:2181 --topic logstash-contract --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic filter_session_start --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">检查group</span><br><span class="line">./kafka-run-class.sh kafka.tools.ConsumerOffsetChecker --zookeeper localhost:2181 --group filter_session_start</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/kafka-windows/" data-id="cjsvvdq650000nzln8dct3kze" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/kafka-windows/" data-id="cjtfdkjua0000ygln9h72dnca" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-bigData_hbase" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/20/bigData_hbase/" class="article-date">
-  <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/20/bigData_hbase/">hbase 入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjsvvdq6e0005nzln0ro11orx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
 
     </footer>
   </div>
@@ -474,7 +485,45 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjsvvdq6f0008nzlnrmhnuep4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/bigData_elasticsearch/" data-id="cjtfdkjui0004yglnzjos7euc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bigData_hbase" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/bigData_hbase/" class="article-date">
+  <time datetime="2019-01-20T06:36:54.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/bigData_hbase/">hbase 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/20/bigData_hbase/" data-id="cjtfdkjum0009yglnr1culrcg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -548,47 +597,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjsvvdq6g000anzlngkc9od2h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-java-base2" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/20/java-base2/" class="article-date">
-  <time datetime="2019-01-20T04:36:54.000Z" itemprop="datePublished">2019-01-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/20/java-base2/">java8 lambda 遍历集合</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如何优化mysql</p>
-<p>1、池技术有什么作用，常见的池技术有哪些？<br>tips：参考 设计组件与性能优化.ppt<br>2、用线程池有什么好处，请谈谈线程池的使用场景<br>tips：参考jason java多线程.ppt<br>3、单例的使用场景是什么，如何实现单例？<br>4、synchronzied关键词的使用<br>5、ReentrantLock和synchronized使用的场景是什么，机制有何不同？<br>6、ThreadLocal技术原理是什么，它在架构中常常用来做什么？<br>tips：参考jason 16、ThreadLocal原理及在多层架构中的应用<br>7、多线程yield方法使用于什么场景？<br>8、java多线程有哪些常见的锁，各自用法是什么？<br>tips：至少有四种， synchronized 、 Condition、 ReentrantLock 、 ReadWriteLock<br>9、CountDownLatch用于多线程的什么场景？<br>10、volatile适用于高并发的什么场景？<br>11、多线程join方法用于什么场景？<br>12、java多线程中让所有子线程执行完毕的方法有哪几种？<br>tips：至少有三种<br>13、高并发环境下的计数器如何实现？<br>Tips：至少有6种实现方式，讲10个代码示例、动手实践、头脑风暴、综合地复习知识。<br>14、HashTable、HashMap、ConcurrentHashMap各自的技术原理和使用场景是什么？<br>15、LinkedBlockingQueue、ConcurrentLinkedQueue各自技术原理和使用场景是什么？<br>16、 Java中如何停止一个线程？<br>17、java多线程中有哪些并发流量控制工具类？<br>tips：至少有三种。 CountDownLatch、Semaphore 、CyclicBarrier<br>18、如何理解动态代理<br>19、什么是线程安全？能举几个不是线程安全的数据结构么？<br>20、常见的多线程数据结构有哪些，你用过其中的哪些多线程数据结构？<br>tips：参考 设计组件与性能优化.ppt<br>21、多线程的常见设计模式，你用过其中的哪些设计模式<br>tips：参考 并发设计模式.ppt<br>22、是否熟悉java concurrent包的内容，请讲讲concurrent包有哪些重要的内容？<br>23、多线程的使用场景？<br>tips：参考jason java多线程.ppt<br>24、请讲讲并发编程的CAS理论<br>tips：参考jason java多线程.ppt<br>25、请讲讲并发队列和阻塞队列<br>tips：参考jason java多线程.ppt<br>26、线程池有哪些种类，各自的使用场景是什么？<br>tips：参考jason java多线程.ppt<br>27、请讲讲线程异步处理的原理及关键组件？<br>tips：参考jason  java多线程.ppt<br>28、常见的软件设计原则有哪些，请谈谈开闭原则、单一职责原则<br>tips：参考 对象健身操.ppt<br>29、在实际项目（产品）研发过程中，你是否有使用过多线程，和线程池，如果有，请举例说明（要求用STAR模型）<br>30、多线程的原子操作类的使用场景是什么，你在项目的实际研发过程中是否有使用过原子操作类？（要求用STAR模型）<br>31、如何在多个线程间共享数据？<br>32、线程的状态有哪些，线程状态的使用场景是什么？<br>33、有多个线程T1，T2，T3，怎么确保它们按顺序执行？<br>tips：参考JoinTest<br>34、volatile变量和atomic变量有什么不同？<br>35、wait/notify/notifyAll一般使用于什么场景？</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/20/java-base2/" data-id="cjsvvdq6h000dnzln11nuaygj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/20/java-base/" data-id="cjtfdkjuo000byglng64wbdob" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java基础/">Java基础</a></li></ul>
@@ -657,6 +666,10 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       <ul>
         
           <li>
+            <a href="/2019/03/16/confluence-安装使用/">confluence 安装使用</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/05/分布式事务一致性/">分布式事务一致性</a>
           </li>
         
@@ -670,10 +683,6 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
         
           <li>
             <a href="/2019/02/18/kafka-mac/">kafka mac</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/幂等性/">幂等性</a>
           </li>
         
       </ul>

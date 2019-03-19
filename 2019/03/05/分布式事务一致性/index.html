@@ -7,19 +7,17 @@
   
   <title>分布式事务一致性 | dails blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2CF10BBEE0B66C10864B69B95983C5B8.png">
+  <meta name="description" content="参考https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html CAP 一致性(Consistency) ： 客户端知道一系列的操作都会同时发生(生效) 可用性(Availability) ： 每个操作都必须以可预期的响应结束 分区容错性(Partition tolerance) ： 即使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式事务一致性">
 <meta property="og:url" content="http://yoursite.com/2019/03/05/分布式事务一致性/index.html">
 <meta property="og:site_name" content="dails blog">
-<meta property="og:description" content="2CF10BBEE0B66C10864B69B95983C5B8.png">
+<meta property="og:description" content="参考https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html CAP 一致性(Consistency) ： 客户端知道一系列的操作都会同时发生(生效) 可用性(Availability) ： 每个操作都必须以可预期的响应结束 分区容错性(Partition tolerance) ： 即使">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/03/05/分布式事务一致性/2CF10BBEE0B66C10864B69B95983C5B8.png">
-<meta property="og:updated_time" content="2019-03-05T14:33:04.472Z">
+<meta property="og:updated_time" content="2019-03-12T03:34:28.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式事务一致性">
-<meta name="twitter:description" content="2CF10BBEE0B66C10864B69B95983C5B8.png">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/05/分布式事务一致性/2CF10BBEE0B66C10864B69B95983C5B8.png">
+<meta name="twitter:description" content="参考https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html CAP 一致性(Consistency) ： 客户端知道一系列的操作都会同时发生(生效) 可用性(Availability) ： 每个操作都必须以可预期的响应结束 分区容错性(Partition tolerance) ： 即使">
   
     <link rel="alternate" href="/atom.xml" title="dails blog" type="application/atom+xml">
   
@@ -88,13 +86,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>2CF10BBEE0B66C10864B69B95983C5B8.png</p>
-<p><img src="/2019/03/05/分布式事务一致性/2CF10BBEE0B66C10864B69B95983C5B8.png" alt="测试"></p>
-
+        <p>参考<br><a href="https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html" target="_blank" rel="noopener">https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html</a></p>
+<h3 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h3><ul>
+<li>一致性(Consistency) ： 客户端知道一系列的操作都会同时发生(生效)</li>
+<li>可用性(Availability) ： 每个操作都必须以可预期的响应结束</li>
+<li>分区容错性(Partition tolerance) ： 即使出现单个组件无法可用,操作依然可以完成</li>
+</ul>
+<p>Web应用至多只能同时支持上面的两个属性<br>一致性和可用性必须做出选择</p>
+<h3 id="BASE理论"><a href="#BASE理论" class="headerlink" title="BASE理论"></a>BASE理论</h3><p>我们往往追求的是可用性，它的重要程序比一致性要<br>Basically Available（基本可用）<br>Soft state（软状态）<br>Eventually consistent（最终一致性）</p>
+<h3 id="两阶段提交XA模型"><a href="#两阶段提交XA模型" class="headerlink" title="两阶段提交XA模型"></a>两阶段提交XA模型</h3><h3 id="补偿机制TCC"><a href="#补偿机制TCC" class="headerlink" title="补偿机制TCC"></a>补偿机制TCC</h3><p>try<br>Confirm<br>Cancel<br>Try阶段会去扣库存，Confirm阶段则是去更新订单状态，如果更新订单失败，则进入Cancel阶段，会去恢复库存。总之，TCC就是通过代码人为实现了两阶段提交，不同的业务场景所写的代码都不一样，</p>
+<h3 id="柔性事务"><a href="#柔性事务" class="headerlink" title="柔性事务"></a>柔性事务</h3><p>是相对强制锁表的刚性事务而言。流程入下：服务器A的事务如果执行顺利，那么事务A就先行提交，如果事务B也执行顺利，则事务B也提交，整个事务就算完成。但是如果事务B执行失败，事务B本身回滚，这时事务A已经被提交，所以需要执行一个补偿操作，将已经提交的事务A执行的操作作反操作，恢复到未执行前事务A的状态。</p>
+<p>缺点是业务侵入性太强，还要补偿操作，缺乏普遍性，没法大规模推广。</p>
+<h3 id="异步确保"><a href="#异步确保" class="headerlink" title="异步确保"></a>异步确保</h3><p>通过发送mq异步确保事务成功<br>参考<br><a href="https://segmentfault.com/a/1190000012762869" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012762869</a></p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>首先是2种超时（我还是走http的）<br>一个是根本没到目标服务<br>一个是目标服务受到了，处理了，但是返回值超时了，</p>
+<p>其次是目标服务处理遇到异常，也分2种情况，<br>一个是异常发生在成功后，任务成功了，<br>另一种是异常发生在成功前，没成功</p>
+<p>那么上游就遇到3种状态，一个成功，一个失败，一个中间状态，<br>中间状态可能成功，也可能失败，就需要catch里面首先查询，<br>    如果成功，那就标记为成功，程序继续往下走，<br>    如果失败或者还是异常，这就比较头疼</p>
+<p>我们举几个例子来说明这个问题</p>
+<h4 id="打赏"><a href="#打赏" class="headerlink" title="打赏"></a>打赏</h4><p>打赏相当于一个转账的流程，但是因为都是虚拟货币，并不涉及第三方支付，相对来说比较简单</p>
+<p>step1：校验参数合法性（废话）<br>step2：校验用户余额，和主播账户是否正常<br>step3：用户扣款，可能有3个状态，成功，失败，中间状态，查询一遍，如果还是如果拿到最终结果，就显示给用户，如果还是中间状态，也告诉用户发生了异常<br>step4：主播打款（必须成功），<br>step5：只要扣款成功，页面就飘过成功，对用户来说这个打赏已经成功了，（主播要骂人了）<br>step6：如果主播的打款，发生了中间状态，那必须标记为挂起，重试5次，如果一直失败，记录日志，人工处理，已经对账的时候会发现问题，人工处理这个问题</p>
+<p>这边扣款的三个状态，try里面执行了，catch里面确认，如果一直出现中间状态，那需要标记，执行Cancel<br>但是给主播加款，只要查询得出主播账户正常，就必须成功，如果是失败或中间状态，都先查询一遍，然后重新执行，这个流程执行5遍，直到成功为止（不成功就人工干预，直接额外生成一笔加款的订单）</p>
+<h4 id="订单"><a href="#订单" class="headerlink" title="订单"></a>订单</h4><p>订单，我们这边忽略库存的问题，正常情况下，核价，支付，交付，除了第一步之外，其他的都是异步的过程，时间长度不确定<br>1，核价失败，同步返回结果，订单直接标记为失败<br>2，发起支付，订单状态改为待支付，然后大概等几分钟，微信，支付宝，银联，会给服务器异步通知（苹果是发给手机，手机再上传，服务器拿到之后再去验证）</p>
+<h4 id="红包"><a href="#红包" class="headerlink" title="红包"></a>红包</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/05/分布式事务一致性/" data-id="cjsvvdq6s0010nzln2084qgwn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/05/分布式事务一致性/" data-id="cjtfdkjv40013yglnvb7cdjz3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -102,6 +118,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/03/16/confluence-安装使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          confluence 安装使用
+        
+      </div>
+    </a>
   
   
     <a href="/2019/03/01/java面试内存相关/" id="article-nav-older" class="article-nav-link-wrap">
@@ -164,6 +189,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/16/confluence-安装使用/">confluence 安装使用</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/05/分布式事务一致性/">分布式事务一致性</a>
           </li>
         
@@ -177,10 +206,6 @@
         
           <li>
             <a href="/2019/02/18/kafka-mac/">kafka mac</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/幂等性/">幂等性</a>
           </li>
         
       </ul>

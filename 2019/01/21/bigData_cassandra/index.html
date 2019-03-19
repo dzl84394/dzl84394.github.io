@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="dails blog">
 <meta property="og:description" content="安装 下载教程是 2.1.18，官网已经没有了，只有  2.1.20https://mirrors.cnnic.cn/apache/cassandra/2.1.20/apache-cassandra-2.1.20-bin.tar.gz  tar zxvf apache-cassandra-2.1.20-bin.tar.gz  mv apache-cassandra-2.1.20 cassandra">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-05T12:25:14.841Z">
+<meta property="og:updated_time" content="2019-03-12T03:34:31.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cassandra 入门">
 <meta name="twitter:description" content="安装 下载教程是 2.1.18，官网已经没有了，只有  2.1.20https://mirrors.cnnic.cn/apache/cassandra/2.1.20/apache-cassandra-2.1.20-bin.tar.gz  tar zxvf apache-cassandra-2.1.20-bin.tar.gz  mv apache-cassandra-2.1.20 cassandra">
@@ -112,7 +112,7 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 </ul>
 <p>CREATE KEYSPACE miguvideo_tagindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE yiibai_ks;</p>
-<p>CREATE TABLE miguvideo_phonenum(<br>   id text PRIMARY KEY,<br>   key text,<br>   value text<br>);</p>
+<p>CREATE TABLE common_phoneNum(<br>   id text PRIMARY KEY,<br>   key text,<br>   value text<br>);<br>CREATE KEYSPACE common_userindex_db<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>id,key,key</p>
 <p>CREATE KEYSPACE tutorialspoint<br>WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};</p>
 <p>USE tutorialspoint;<br>CREATE TABLE emp(<br>   emp_id int PRIMARY KEY,<br>   emp_name text,<br>   emp_city text,<br>   emp_sal varint,<br>   emp_phone varint<br>   );</p>
@@ -125,11 +125,14 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
 <p>create INDEX on testList2(k0);</p>
 <p>设置超时时间，2分钟<br>./cqlsh –request-timeout 120 127.0.0.1  </p>
 <p>CREATE KEYSPACE miguvideo_userindex_db WITH replication = {‘class’:’SimpleStrategy’, ‘replication_factor’ : 3};<br>CREATE TABLE miguvideo_userid(<br>   userId text PRIMARY KEY,<br>   miguvideo_lastLoginSuccessTime text,<br>   );</p>
+<ul>
+<li>删除<br>DELETE FROM emp WHERE emp_id=3;</li>
+</ul>
 <h2 id="java的crud"><a href="#java的crud" class="headerlink" title="java的crud"></a>java的crud</h2><h2 id="批量执行"><a href="#批量执行" class="headerlink" title="批量执行"></a>批量执行</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjsvvdq6d0004nzln1i0b1hqk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/21/bigData_cassandra/" data-id="cjtfdkjue0001ygln4fccdaf9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li></ul>
@@ -210,6 +213,10 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
       <ul>
         
           <li>
+            <a href="/2019/03/16/confluence-安装使用/">confluence 安装使用</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/05/分布式事务一致性/">分布式事务一致性</a>
           </li>
         
@@ -223,10 +230,6 @@ rpc_address: 127.0.0.1  //用于监听客户端连接的地址。建议设置成
         
           <li>
             <a href="/2019/02/18/kafka-mac/">kafka mac</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/幂等性/">幂等性</a>
           </li>
         
       </ul>

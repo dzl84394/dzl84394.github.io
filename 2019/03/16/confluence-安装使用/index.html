@@ -5,20 +5,19 @@
   
 
   
-  <title>kafka mac | dails blog</title>
+  <title>confluence 安装使用 | dails blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="启动zksudo ./zookeeper-server-start.sh ../config/zookeeper.properties 启动kafkasudo ./kafka-server-start.sh ../config/server.properties  进入生产者./kafka-console-producer.sh –broker-list localhost:9092 –topi">
-<meta name="keywords" content="bigdata,kafka">
+  <meta name="description" content="jdkmysql下载官网 https://www.atlassian.com/software/confluence/download直接在linux文件夹下下载 wget https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.15.1-x64.bin    下载得到atlassi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kafka mac">
-<meta property="og:url" content="http://yoursite.com/2019/02/18/kafka-mac/index.html">
+<meta property="og:title" content="confluence 安装使用">
+<meta property="og:url" content="http://yoursite.com/2019/03/16/confluence-安装使用/index.html">
 <meta property="og:site_name" content="dails blog">
-<meta property="og:description" content="启动zksudo ./zookeeper-server-start.sh ../config/zookeeper.properties 启动kafkasudo ./kafka-server-start.sh ../config/server.properties  进入生产者./kafka-console-producer.sh –broker-list localhost:9092 –topi">
+<meta property="og:description" content="jdkmysql下载官网 https://www.atlassian.com/software/confluence/download直接在linux文件夹下下载 wget https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.15.1-x64.bin    下载得到atlassi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-18T02:52:55.689Z">
+<meta property="og:updated_time" content="2019-03-17T12:32:37.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kafka mac">
-<meta name="twitter:description" content="启动zksudo ./zookeeper-server-start.sh ../config/zookeeper.properties 启动kafkasudo ./kafka-server-start.sh ../config/server.properties  进入生产者./kafka-console-producer.sh –broker-list localhost:9092 –topi">
+<meta name="twitter:title" content="confluence 安装使用">
+<meta name="twitter:description" content="jdkmysql下载官网 https://www.atlassian.com/software/confluence/download直接在linux文件夹下下载 wget https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.15.1-x64.bin    下载得到atlassi">
   
     <link rel="alternate" href="/atom.xml" title="dails blog" type="application/atom+xml">
   
@@ -65,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-kafka-mac" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-confluence-安装使用" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/18/kafka-mac/" class="article-date">
-  <time datetime="2019-02-18T02:19:23.000Z" itemprop="datePublished">2019-02-18</time>
+    <a href="/2019/03/16/confluence-安装使用/" class="article-date">
+  <time datetime="2019-03-16T08:09:26.000Z" itemprop="datePublished">2019-03-16</time>
 </a>
     
   </div>
@@ -79,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      kafka mac
+      confluence 安装使用
     </h1>
   
 
@@ -87,39 +86,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>启动zk<br>sudo ./zookeeper-server-start.sh ../config/zookeeper.properties</li>
-<li>启动kafka<br>sudo ./kafka-server-start.sh ../config/server.properties</li>
-</ul>
-<p>进入生产者<br>./kafka-console-producer.sh –broker-list localhost:9092 –topic test</p>
+        <h2 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h2><h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网 <a href="https://www.atlassian.com/software/confluence/download" target="_blank" rel="noopener">https://www.atlassian.com/software/confluence/download</a><br>直接在linux文件夹下下载<br> wget <a href="https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.15.1-x64.bin" target="_blank" rel="noopener">https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.15.1-x64.bin</a>  </p>
+<p> 下载得到atlassian-confluence-6.15.1-x64.bin</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>./atlassian-confluence-6.15.1-x64.bin</p>
+<p>Choose the appropriate installation or upgrade option.<br>Please choose one of the following:<br>Express Install (uses default settings) [1],<br>Custom Install (recommended for advanced users) [2, Enter],<br>Upgrade an existing Confluence installation [3]<br>1</p>
+<p>See where Confluence will be installed and the settings that will be used.<br>Installation Directory: /opt/atlassian/confluence<br>Home Directory: /var/atlassian/application-data/confluence<br>HTTP Port: 8090<br>RMI Port: 8000<br>Install as service: Yes<br>Install [i, Enter], Exit [e]</p>
+<p>去改端口<br>/opt/atlassian/confluence/conf/server.xml<br>8090 改成 28090<br>8000 也改成28000</p>
+<h2 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h2><p>/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-2.4.jar 复制出来</p>
+<p>mv /opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar /opt/atlassian/buding/atlassian-extras-2.4.jar.confluence.bak</p>
+<p>将atlassian-extras-decoder-v2-3.4.1.jar文件拷贝到windows下。同时将文件名改为 atlassian-extras-2.4.jar。破解工具只识别这个文件名</p>
+<p> （3）下载破解文件 <a href="http://wiki.wuyijun.cn/download/attachments/2327034/51CTO%E4%B8%8B%E8%BD%BD-Confluence.zip" target="_blank" rel="noopener">http://wiki.wuyijun.cn/download/attachments/2327034/51CTO%E4%B8%8B%E8%BD%BD-Confluence.zip</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/18/kafka-mac/" data-id="cjtfdkjuz000qyglnio2iy90z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/16/confluence-安装使用/" data-id="cjtfdkjul0008yglnv3gycbv9" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2019/02/26/java-面试题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          java 面试题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/12/幂等性/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/05/分布式事务一致性/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">幂等性</div>
+      <div class="article-nav-title">分布式事务一致性</div>
     </a>
   
 </nav>
